@@ -1,7 +1,7 @@
-import { Apartamento } from './components/Apartamento.jsx'
 import { useState } from 'react'
 import { apartamentosHechos } from './constans.js'
 import { Encabezado } from './components/Encabezado.jsx'
+import { Apartamento } from './components/Apartamento.jsx'
 import './App.css'
 
 
@@ -13,8 +13,10 @@ function App() {
       nombre: 'Casa de playa',
       arrendador: 'Carlos Hernandez',
     }
-    apartamentosHechos.push(newApartamento)
-    setApartamentos([...apartamentosHechos])
+
+    const apartamentosNuevos = [...apartamentos]
+    apartamentosNuevos.push(newApartamento)
+    setApartamentos([...apartamentosNuevos])
 
   }
   return (
