@@ -3,19 +3,63 @@
   border-radius: 30px;
 }
 
-
 .headerLogo{
   display: flex;
-  justify-content: center;
   margin-bottom: 2rem;
-  background-color: #d88628;
+  border-color: #d88628;
+  border-style: solid;
   height: 100px;
   border-radius: 20px;
 }
+
+.button-create{
+  background-color: #d88628;
+  color: white;
+  border: none;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button-create:hover{
+  background-color: #664e32;
+}
+
+.button-view{
+  width: 20%;
+  padding-left: 36%;
+  padding-top: 1%;
+  text-align: right;
+}
+
+
+.welcome-text{
+  margin: 0;
+  padding: 0;
+  font-size: .7rem;
+  height: 100px;
+  width: 250px;
+  text-align: left;
+}
+
+.second-text{
+  text-align: center;
+}
+
+
+
+
+
 .grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 4rem;
+  gap: 1.5rem;
   padding-left: 4%;
   padding-right: 4%;
 
@@ -40,6 +84,7 @@
 
 .logo {
   height: 100%;
+  float: left;
 }
 .textos{
   display:block;
