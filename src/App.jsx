@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { apartamentosHechos } from './constans.js'
 import { Encabezado } from './components/Encabezado.jsx'
 import './App.css'
+import { ApartamentoDetails } from './components/ApartamentoDetails.jsx'
 
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
       id: apartamentos.length + 1,
       nombre: 'Casa de playa',
       arrendador: 'Carlos Hernandez',
+      precioApartamento: '5000',
+      descripcion: 'Casa lujosa en la playa',
+      
     }
     apartamentosHechos.push(newApartamento)
     setApartamentos([...apartamentosHechos])
@@ -20,15 +24,16 @@ function App() {
   return (
     <main>
 
-       <Encabezado createApartamento={createApartamento}></Encabezado>
-
+      <Encabezado></Encabezado>
       {/* Mapeo de los apartamentos */}
-      <section className='grid'>
+      <section >
         {apartamentos.map((apartamento) => (
-          <Apartamento
+          <ApartamentoDetails
             key={apartamento.id}
             nombreApartamento={apartamento.nombre}
-            nombreArrendador={apartamento.arrendador} ></Apartamento>
+            nombreArrendador={apartamento.arrendador}
+            precioApartamento={apartamento.precioApartamento}
+            descripcion={apartamento.descripcion} ></ApartamentoDetails>
         ))}
       </section>
 
