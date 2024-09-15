@@ -1,34 +1,38 @@
+import { Apartamento } from './components/Apartamento.jsx'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { apartamentosHechos } from './constans.js'
+import { Encabezado } from './components/Encabezado.jsx'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+function App() {
+  const [apartamentos, setApartamentos] = useState(apartamentosHechos)
+  const createApartamento = () => {
+    const newApartamento = {
+      id: apartamentos.length + 1,
+      nombre: 'Casa de playa',
+      arrendador: 'Carlos Hernandez',
+    }
+    apartamentosHechos.push(newApartamento)
+    setApartamentos([...apartamentosHechos])
+
+  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main>
+
+       <Encabezado createApartamento={createApartamento}></Encabezado>
+
+      {/* Mapeo de los apartamentos */}
+      <section className='grid'>
+        {apartamentos.map((apartamento) => (
+          <Apartamento
+            key={apartamento.id}
+            nombreApartamento={apartamento.nombre}
+            nombreArrendador={apartamento.arrendador} ></Apartamento>
+        ))}
+      </section>
+
+    </main>
   )
 }
 
