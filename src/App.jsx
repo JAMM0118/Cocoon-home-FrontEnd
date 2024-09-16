@@ -1,39 +1,41 @@
-import { Apartamento } from './components/Apartamento.jsx'
-import { useState } from 'react'
-import { apartamentosHechos } from './constans.js'
-import { Encabezado } from './components/Encabezado.jsx'
-import './App.css'
-
+import { useState } from 'react';
+import { apartamentosHechos } from './constans.js';
+import { Apartamento } from './components/Apartamento.jsx';
+import { Encabezado } from './components/Encabezado.jsx';
+import BotonAbrirFormulario from './components/botonFormulario';
+import './App.css';
 
 function App() {
-  const [apartamentos, setApartamentos] = useState(apartamentosHechos)
+  const [apartamentos, setApartamentos] = useState(apartamentosHechos);
+
   const createApartamento = () => {
     const newApartamento = {
       id: apartamentos.length + 1,
       nombre: 'Casa de playa',
       arrendador: 'Carlos Hernandez',
-    }
-    apartamentosHechos.push(newApartamento)
-    setApartamentos([...apartamentosHechos])
+    };
+    apartamentosHechos.push(newApartamento);
+    setApartamentos([...apartamentosHechos]);
+  };
 
-  }
   return (
     <main>
+      <Encabezado createApartamento={createApartamento} />
+      {/* Aquí es donde mostramos el botón que abrirá el formulario */}
+      <BotonAbrirFormulario />
 
-       <Encabezado createApartamento={createApartamento}></Encabezado>
 
-      {/* Mapeo de los apartamentos */}
-      <section className='grid'>
+      <section className="grid">
         {apartamentos.map((apartamento) => (
           <Apartamento
             key={apartamento.id}
             nombreApartamento={apartamento.nombre}
-            nombreArrendador={apartamento.arrendador} ></Apartamento>
+            nombreArrendador={apartamento.arrendador}
+          />
         ))}
       </section>
-
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
