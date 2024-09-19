@@ -1,4 +1,4 @@
-export function Apartamento({nombreApartamento, nombreArrendador, estado}) {
+export function Propiedad({nombreApartamento, nombreArrendador, estado}) {
   return (
     <div className='apartamento'>
       <img className='imagenes' src="/images/casas.jpg" alt="" />

@@ -1,5 +1,5 @@
-import '../App.css'
-export function Encabezado({createApartamento}) {
+import { FormularioPropiedades} from "./FormularioPropiedades";
+export function Encabezado() {
   return (
     <header className='headerLogo'>
       <img className='logo'src="/images/logoCocoon-.png" alt="logo" />
@@ -9,7 +9,7 @@ export function Encabezado({createApartamento}) {
       </div>
       
       <div className='button-view'>
-        <button className='button-create' onClick={createApartamento}> Crear Apartamento</button>
+       <FormularioPropiedades/>
 
       </div>
     </header>
