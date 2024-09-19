@@ -1,37 +1,35 @@
-import { Apartamento } from './components/Apartamento.jsx'
 import { useState } from 'react'
-import { apartamentosHechos } from './constans.js'
+import {propiedadesHechas } from './logic/constans.js'
 import { Encabezado } from './components/Encabezado.jsx'
+import { Propiedad } from './components/Propiedad.jsx'
 import './App.css'
 
+//let propiedades = await cargarPropiedades();
+//console.log(propiedades);
+// let arrendadores = await cargarArrendadores();
+let name =  'Perez';
 
 function App() {
-  const [apartamentos, setApartamentos] = useState(apartamentosHechos)
-  const createApartamento = () => {
-    const newApartamento = {
-      id: apartamentos.length + 1,
-      nombre: 'Casa de playa',
-      arrendador: 'Carlos Hernandez',
-    }
-    apartamentosHechos.push(newApartamento)
-    setApartamentos([...apartamentosHechos])
 
-  }
+
+  const [propiedades, setPropiedades] = useState(propiedadesHechas)
+  
   return (
     <main>
 
-       <Encabezado createApartamento={createApartamento}></Encabezado>
+      <Encabezado></Encabezado>
 
       {/* Mapeo de los apartamentos */}
       <section className='grid'>
-        {apartamentos.map((apartamento) => (
-          <Apartamento
-            key={apartamento.id}
-            nombreApartamento={apartamento.nombre}
-            nombreArrendador={apartamento.arrendador} ></Apartamento>
+        {propiedades.map((propiedad) => (
+          <Propiedad
+            key={propiedad.id}
+            nombreApartamento={propiedad.tipo_vivienda}
+            nombreArrendador={name}
+            estado={propiedad.estado}></Propiedad>
         ))}
       </section>
-
+     
     </main>
   )
 }
