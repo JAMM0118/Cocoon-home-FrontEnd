@@ -24,9 +24,9 @@ function App() {
         {propiedades.map((propiedad) => (
           <Propiedad
             key={propiedad.id}
-            nombreApartamento={propiedad.tipo_vivienda}
+            tituloPropiedad={propiedad.tipo_vivienda}
             nombreArrendador={name}
-            estado={propiedad.estado}></Propiedad>
+            descripcion={propiedad.descripcion}></Propiedad>
         ))}
       </section>
      
