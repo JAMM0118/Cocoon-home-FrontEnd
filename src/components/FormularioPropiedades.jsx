@@ -58,6 +58,7 @@ export function FormularioPropiedades() {
     if (formulario.direccion && formulario.precio && formulario.habitaciones && formulario.huespedes) {
       limpiarFormulario();
       handleClose();
+      console.log(formulario);
     } else {
       alert('Por favor, llena todos los campos obligatorios');
     }
@@ -84,7 +85,7 @@ export function FormularioPropiedades() {
   return (
     <main >
       <button className='button-create' variant="outlined" color="primary" onClick={handleOpen}>
-        Abrir Formulario
+        Crear Propiedad
       </button>
       <Modal open={open} onClose={handleClose} style={{ padding: '16px', maxWidth: '600px', margin: '0 auto' }}>
 
