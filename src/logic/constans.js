@@ -41,8 +41,9 @@ export const cargarPropiedades = async () => {
 export const propiedadesHechas =[
   {
     id: 1,
-    arrendador: 1,
-    descripcion: "Casa de playa con piscina y vista al mar",
+    nombre:"Casa de playable",
+    arrendador: "Pedro Picapiedra",
+    descripcion: "Casa de playa con piscina y vista al mar en la ciudad de Santa Marta con vistas increiblesmentes hermosas bla bla bla bla bla bla bla bla bla bla Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ",
     direccion: "Calle 15 carrera 10b #20-30",
     estado: "disponible",
     fotos: "linkfotos.com",
@@ -52,8 +53,10 @@ export const propiedadesHechas =[
     tipo_vivienda: "Casa de playa",
     videos: "linkvideos.com",
   },
+  /*
   {
     id: 2,
+    nombre: "casa bonita",
     arrendador: 1,
     descripcion: "Casa de playa con piscina y vista al mar",
     direccion: "Calle 15 carrera 10b #20-30",
@@ -67,6 +70,7 @@ export const propiedadesHechas =[
   },
   {
     id: 3,
+    nombre: "casa lujosa",
     arrendador: 1,
     descripcion: "Casa de playa con piscina y vista al mar",
     direccion: "Calle 15 carrera 10b #20-30",
@@ -77,5 +81,5 @@ export const propiedadesHechas =[
     servicios: "Ninguno",
     tipo_vivienda: "Casa de playa",
     videos: "linkvideos.com",
-  }
+  }*/
 ]

@@ -1,0 +1,123 @@
+/* Contenedor principal */
+.layout {
+  display: grid;
+  grid-template-rows: auto auto 1fr ;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  'sidebar' 
+  'main' 
+  'additional-info';
+  height: auto;
+  gap: 20px;
+  margin: 20px;
+}
+
+@media (min-width: 800px) {
+  .layout {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'sidebar main' 'additional-info additional-info'; 
+  }
+}
+
+.additional-info {
+  grid-area: additional-info;
+}
+
+
+aside{
+  grid-area: sidebar;
+  background: #f8f8f8;
+}
+
+main {
+  grid-area: main;
+  background-color: #f8f8f8;;
+}
+  
+  /* Textos principales */
+  
+  .name-propiedad-details {
+    font: Helvetica neue;
+    font-size: 30px;
+    color: #000000;
+    margin:0;
+  }
+  
+  .text-precio {
+    display:flex;
+    align-items: center;
+    font-size: 40px;
+    color: #0055FB;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  .text-precio-mes{
+
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #0055FB;
+  }
+    
+  
+  /* Contenedor de la imagen */
+  .image-container {
+    background-color: #f8f8f8;
+    display: block; /* Cambiar de flex a block */
+    width: 100%;    /* Asegura que ocupe todo el ancho del área del grid */
+  }
+  
+  /* Estilo de la imagen */
+  .image-container img {
+    background-color: #f8f8f8;
+    width: 100%;      /* La imagen se ajusta al 100% del contenedor */
+    height: auto;     /* Mantener la relación de aspecto */
+    border-radius: 10px;
+    border: 2px solid #ddd;
+  }
+  .texto-subtitulo{
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 4px;
+    color: #000000;
+  }
+  .button-reserva {
+    background-color: #0055FB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 20px;
+    margin: 20px;
+    cursor: pointer;
+  }
+  .name-propietario{
+    font-size: 18px;
+    color: #000000;
+    margin-left: 20px;
+    
+
+  }
+  .box-servicios{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+  }
+  .button-servicios{
+    background-color: #ffffff;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(126, 126, 126);
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+
+  
