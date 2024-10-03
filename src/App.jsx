@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import {propiedadesHechas } from './logic/constans.js'
-import { Encabezado } from './components/Encabezado.jsx'
+import { EncabezadoHome } from './components/EncabezadoHome.jsx'
 import { Propiedad } from './components/Propiedad.jsx'
+import { MensajesHome } from './components/mensajesHome.jsx'
 import './App.css'
+import './index.css'
 
 //let propiedades = await cargarPropiedades();
 //console.log(propiedades);
@@ -15,10 +17,12 @@ function App() {
   const [propiedades, setPropiedades] = useState(propiedadesHechas)
   
   return (
-    <main>
+    <main className='homePage'>
 
-      <Encabezado></Encabezado>
-
+      <EncabezadoHome></EncabezadoHome>
+        {/* Mensajes */}
+        <MensajesHome></MensajesHome>
+      <h1 className='tituloHome'>Propiedades de interes</h1>
       {/* Mapeo de los apartamentos */}
       <section className='grid'>
         {propiedades.map((propiedad) => (

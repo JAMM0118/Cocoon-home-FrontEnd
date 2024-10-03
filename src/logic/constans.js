@@ -49,7 +49,7 @@ export const propiedadesHechas = [
     precio: 120000,
     reglas: "No hay",
     servicios: "Ninguno",
-    tipo_vivienda: "Casa de playa",
+    tipo_vivienda: "Casa",
     videos: "linkvideos.com",
   },
   {
@@ -62,7 +62,7 @@ export const propiedadesHechas = [
     precio: 120000,
     reglas: "No hay",
     servicios: "Ninguno",
-    tipo_vivienda: "Casa de playa",
+    tipo_vivienda: "Habitacion",
     videos: "linkvideos.com",
   },
   {
@@ -75,7 +75,7 @@ export const propiedadesHechas = [
     precio: 120000,
     reglas: "No hay",
     servicios: "Ninguno",
-    tipo_vivienda: "Casa de playa",
+    tipo_vivienda: "ApartaEstudio",
     videos: "linkvideos.com",
   },
   {
@@ -103,5 +103,20 @@ export const propiedadesHechas = [
     servicios: "Internet, Agua, Luz",
     tipo_vivienda: "Apartamento",
     videos: "linkvideos.com",
+  },
+
+  {
+    id: 6,
+    arrendador: 2,
+    descripcion: "Apartamento en el centro de la ciudad con excelente vista. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    direccion: "Avenida 7 #45-67",
+    estado: "disponible",
+    fotos: "linkfotos.com",
+    precio: 150000,
+    reglas: "No se permiten mascotas",
+    servicios: "Internet, Agua, Luz",
+    tipo_vivienda: "ApartaEstudio",
+    videos: "linkvideos.com",
+
   }
 ];
