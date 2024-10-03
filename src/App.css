@@ -1,15 +1,118 @@
 .imagenes {
   width: 100%;
-  border-radius: 30px;
+  height: 100%;
+  border-radius: 10px;
+  aspect-ratio: 16/9;
 }
 
-.headerLogo{
+/* .headerLogo{
   display: flex;
   margin-bottom: 2rem;
   border-color: var(--tarawera);
   border-style: solid;
   height: 100px;
   border-radius: 20px;
+} */
+
+.headerPrincipal{
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100px;
+  width: 100%;
+  position: relative;
+    
+  margin-bottom: 2rem;
+}
+
+.dropDownProfile{
+  position: absolute;
+  top: 5.2rem;
+  right: 1.5rem;
+  width: 165px;
+  padding: 1px;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--gray);
+}
+
+.dropDownMenu{
+  position: absolute;
+  top: 5.2rem;
+  right: 3rem;
+  margin-right: 2px;
+  width: 175px;
+  padding: 1px;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--gray);
+}
+.dropDownProfile::before{
+  content: '';
+  position: absolute;
+  top: -0.7rem;
+  right: .5rem;
+  width: 20px;
+  height: 20px;
+  background-color: var(--white);
+  transform: rotate(45deg);
+  border-left: 1px solid var(--gray);
+  border-top: 1px solid var(--gray);
+
+}
+.dropDownMenu::before{
+  content: '';
+  position: absolute;
+  top: -0.7rem;
+  right: .5rem;
+  width: 20px;
+  height: 20px;
+  background-color: var(--white);
+  transform: rotate(45deg);
+  border-left: 1px solid var(--gray);
+  border-top: 1px solid var(--gray);
+
+}
+.header{
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 450px;
+  width: 100%;
+  position: relative;
+    
+  margin-bottom: 2rem;
+}
+.contenedorMenu{
+  width: 80px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  float: right;
+  margin-top: -90px;
+  margin-right: 25px;
+  padding: 2px;
+  background-color: var(--white);
+}
+
+
+.iconos{
+  display: flex;
+  width: 70%;
+  height: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 25%;
+
+
+  color: var(--tarawera);
+}
+.header , .sombraHeader{
+  border-radius: 20px;
+}
+.sombraHeader{
+  background-color: rgb(0 0 0 /20%);
+  height: 100%;
+    
 }
 
 .button-create{
@@ -38,57 +141,32 @@
   text-align: right;
 }
 
-
-.welcome-text{
+.nombreApp{
   margin: 0;
-  padding: 0;
-  font-size: 4rem;
+  padding: 35px;
+  font-size: 2rem;
   font-weight: bold;
-  font-family: "Josefin Sans", sans-serif;
-  width: 60%;
+  color: var(--tarawera);
   text-align: left;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(1, 3fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   padding-left: 4%;
   padding-right: 4%;
 
 }
 
+
 .propiedad {
   display: flex;
   background-color: #ffffff;
-  padding: 2rem;
+  padding: .4rem;
   cursor: pointer;
   border-radius: 20px;
   box-shadow: 2px 6px 20px var(--christi);
-}
-
-.propiedad:hover {
-  transform: translateY(-5px);
-}
-
-.logo {
-  height: 100%;
-  float: left;
-}
-.textos{
-  display:block;
-  font-size: 1.2rem;
-  color: #d88628;
-  margin: 1.5rem;
-
-}
-
-.tituloPropiedad{
-  text-align: left;
-}
-
-.descripcionPropiedad{
-  color: black;
 }
 
 .contenedorImagenes{
@@ -96,8 +174,58 @@
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 300px;
+  height: 100%;
 }
+
+.propiedad:hover {
+  transform: translateY(-5px);
+}
+
+.logo {
+  margin-top: 20px;
+  margin-left: 20px;
+  height: 100%;
+  float: left;
+}
+.textos{
+  display:block;
+  font-size: 1rem;
+  width: 50%;
+  color: var(--tarawera);
+  margin-left: 3%;
+
+}
+
+.tituloHome{
+  font-size: 2rem;
+  margin-left: 5%;
+}
+
+.icono{
+  width: 100%;
+  height: 100%;
+}
+.icono:hover{
+  color: var(--breaker-bay);
+  cursor: pointer;
+}
+
+
+
+.propietarioPropiedad{
+  color: var(--black);
+}
+
+.contenidoMensaje{
+  display: flex;
+}
+
+.tituloMensaje{
+  display: block;
+  text-align: center;
+}
+
+
 
 .formulario-propiedad {
   position: absolute;
@@ -119,4 +247,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.textoEncabezado {
+  font-size: 2rem;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.texto-h3 {
+  font-size: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
