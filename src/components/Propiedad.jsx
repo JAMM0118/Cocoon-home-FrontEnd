@@ -6,8 +6,8 @@ export function Propiedad({tituloPropiedad, nombreArrendador,descripcion}) {
         <img className='imagenes' src="/images/casas.jpg" alt="" />
       </section>
       <section className='textos' >
-        <h1 className='tituloPropiedad'>{tituloPropiedad}</h1>
-        <p className="propietario">Arrendador:  <span className='propietarioPropiedad'>{nombreArrendador}</span></p>
+        <h1>{tituloPropiedad}</h1>
+        <p>Arrendador:  <span className='propietarioPropiedad'>{nombreArrendador}</span></p>
        </section>
 
     </main>

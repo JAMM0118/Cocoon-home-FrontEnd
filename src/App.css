@@ -210,17 +210,10 @@
   cursor: pointer;
 }
 
-.tituloPropiedad{
-  text-align: center;
-}
+
 
 .propietarioPropiedad{
   color: var(--black);
-}
-
-.propietario{
-  gap: .5rem;
-  
 }
 
 .contenidoMensaje{
