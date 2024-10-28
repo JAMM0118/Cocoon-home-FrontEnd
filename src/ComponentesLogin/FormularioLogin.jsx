@@ -1,8 +1,8 @@
 import "./FormularioLogin.css"
 import { useState } from "react"
-import logo from "../ContenidoGrafico/Logo Final.png"
+import logo from "/images/CocoonIcon.png"
 
-export function Formulario(){  
+export function FormularioLogin(){  
 
     const[usuario,setUsuario] = useState("")
     const[password,setPassword] = useState("")

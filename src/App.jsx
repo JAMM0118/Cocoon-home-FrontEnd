@@ -3,6 +3,10 @@ import {cargarArrendadores, cargarPropiedades, propiedadesHechas } from './logic
 import { EncabezadoHome } from './components/EncabezadoHome.jsx'
 import { Propiedad } from './components/Propiedad.jsx'
 import { MensajesHome } from './components/mensajesHome.jsx'
+import {FormularioLogin} from './ComponentesLogin/FormularioLogin.jsx'
+import {FormularioRegistro} from './ComponentesLogin/FormularioRegistro.jsx'
+import './ComponentesLogin/FormularioLogin.css'
+import './ComponentesLogin/FormularioRegistro.css'
 import './App.css'
 import './index.css'
  
@@ -13,36 +17,35 @@ let name =  'Perez';
 
 function App() {
 
-
   const [propiedades, setPropiedades] = useState([]);
   const [arrendadores, setArrendadores] = useState([]);
-  const cargarDatos = async () => {
-    const getPropiedades = await cargarPropiedades();
-    const getArrendadores = await cargarArrendadores();
-    console.log(getPropiedades);
-    console.log(getArrendadores);
-    setPropiedades([...getPropiedades]);
-    setArrendadores([...getArrendadores]);
-  };
+  // const cargarDatos = async () => {
+  //   const getPropiedades = await cargarPropiedades();
+  //   const getArrendadores = await cargarArrendadores();
+  //   console.log(getPropiedades);
+  //   console.log(getArrendadores);
+  //   // setArrendadores([...getArrendadores]);
+  // };
+ 
 
-  useEffect(() =>cargarDatos, []);
+  useEffect(() => setPropiedades([...propiedadesHechas]), []);
   
   
   return (
     
     <main className='homePage'>
-
+        
       <EncabezadoHome></EncabezadoHome>
-        {/* Mensajes */}
+        
         <MensajesHome></MensajesHome>
       <h1 className='tituloHome'>Propiedades de interes</h1>
-      {/* Mapeo de los apartamentos */}
+    
       <section className='grid'>
         {propiedades.map((propiedad) => (
           <Propiedad
             key={propiedad.id}
             tituloPropiedad={propiedad.tipo_vivienda}
-            nombreArrendador={arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name}
+            nombreArrendador={name}
             descripcion={propiedad.descripcion}></Propiedad>
         ))}
       </section>
