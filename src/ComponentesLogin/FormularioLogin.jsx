@@ -47,10 +47,10 @@ export function FormularioLogin(){
                 placeholder = "Contraseña"//Muestra dentro de la caja de texto "Contraseña"
                 aria-label = "Contraseña"//->Ofrece accesibilidad para aquellas personas que no tienen vision y usan programas de lectura
                 />
-                <button>Iniciar Sesión</button>
+                <button >Iniciar Sesión</button>
+                
 
             </form>
-            
             {error && <p className="error-message">Todos los campos son obligatorios</p>}
 
             {/* Hipervínculo de "¿Olvidaste tu contraseña?" */}
