@@ -1,8 +1,13 @@
-import { useState } from 'react'
-import {propiedadesHechas } from './logic/constans.js'
-import { Encabezado } from './components/Encabezado.jsx'
-import { Propiedad } from './components/Propiedad.jsx'
+import React, { useState } from 'react';
+import { FormularioLogin } from './ComponentesLogin/FormularioLogin.jsx'
+import { FormularioRegistro } from './ComponentesLogin/FormularioRegistro.jsx'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {FormularioPropiedades} from './components/FormularioPropiedades.jsx'
+import { HomePage } from './components/HomePage.jsx';
+import './ComponentesLogin/FormularioLogin.css'
+import './ComponentesLogin/FormularioRegistro.css'
 import './App.css'
+import './index.css'
 import { PropiedadDetails } from './components/PropiedadDetails.jsx'
 
 
@@ -11,26 +16,19 @@ let name =  'Perez';
 
 function App() {
 
-
-  const [propiedades, setPropiedades] = useState(propiedadesHechas)
-  
   return (
     <main>
 
       <Encabezado></Encabezado>
 
       {/* Mapeo de los apartamentos */}
-      <section>
+      <section className='grid'>
         {propiedades.map((propiedad) => (
-          <PropiedadDetails
+          <Propiedad
             key={propiedad.id}
-            nombre={propiedad.nombre}
-            arrendador={propiedad.arrendador}
-            precio={propiedad.precio}
-            descripcion={propiedad.descripcion}
-            estado={propiedad.estado}
-            >
-          </PropiedadDetails>
+            nombreApartamento={propiedad.tipo_vivienda}
+            nombreArrendador={name}
+            estado={propiedad.estado}></Propiedad>
         ))}
       </section>
      

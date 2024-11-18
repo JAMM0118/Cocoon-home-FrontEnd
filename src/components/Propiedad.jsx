@@ -1,12 +1,22 @@
-export function Propiedad({nombreApartamento, nombreArrendador, estado}) {
+export function Propiedad({tituloPropiedad, nombreArrendador,descripcion}) {
+  const maxLength = 30;
   return (
-    <div className='apartamento'>
-      <img className='imagenes' src="/images/casas.jpg" alt="" />
-      <div className='textos' >
-        <p className='nombreApartamento'>{nombreApartamento}</p>
-        <p>Arrendador: <span className='arrendador'>{nombreArrendador}</span></p>
-        <p>Estado: <span className="arrendador">{estado}</span></p>
-      </div>
-    </div>
+    <main className='propiedad'>
+      <section className="contenedorImagenes">
+        <img className='imagenes' src="/images/casas.jpg" alt="" />
+      </section>
+      <section className='textos' >
+        <h1>{tituloPropiedad}</h1>
+        <p>Arrendador:  <span className='propietarioPropiedad'>{nombreArrendador}</span></p>
+       </section>
+
+    </main>
   )
 }
+
+const maxText = (text, maxLength) => {
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + '...';
+  }
+  return text;
+};
