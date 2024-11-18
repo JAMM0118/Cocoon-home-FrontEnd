@@ -1,8 +1,8 @@
 import "./FormularioLogin.css"
 import { useState } from "react"
-import logo from "../ContenidoGrafico/Logo Final.png"
+import logo from "/images/CocoonIcon.png"
 
-export function Formulario(){  
+export function FormularioLogin(){  
 
     const[usuario,setUsuario] = useState("")
     const[password,setPassword] = useState("")
@@ -47,10 +47,10 @@ export function Formulario(){
                 placeholder = "Contraseña"//Muestra dentro de la caja de texto "Contraseña"
                 aria-label = "Contraseña"//->Ofrece accesibilidad para aquellas personas que no tienen vision y usan programas de lectura
                 />
-                <button>Iniciar Sesión</button>
+                <button >Iniciar Sesión</button>
+                
 
             </form>
-            
             {error && <p className="error-message">Todos los campos son obligatorios</p>}
 
             {/* Hipervínculo de "¿Olvidaste tu contraseña?" */}
