@@ -1,4 +1,5 @@
 import { FormularioItems } from '../componentesFormulario/formularioItems.jsx';
+import { propiedadesHechas } from '../logic/constans.js';
 import React, { useEffect, useState } from 'react';
 import {
   Modal, Button, Card, CardContent, Typography,
@@ -59,6 +60,7 @@ export function FormularioPropiedades() {
   const agregarPropiedad = () => {
     if (formulario.direccion && formulario.precio && formulario.habitaciones && formulario.huespedes) {
       limpiarFormulario();
+    
       handleClose();
       console.log(formulario);
     } else {
@@ -96,7 +98,7 @@ export function FormularioPropiedades() {
             
             <LinearProgress variant="determinate" value={progreso} style={{ margin: '16px' }} />
 
-            <FormularioItems
+            <FormularioItems href='/'
               formulario={formulario}
               agregarPropiedad={agregarPropiedad}
               handleAmenidadChange={handleAmenidadChange}

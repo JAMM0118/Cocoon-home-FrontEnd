@@ -12,6 +12,12 @@ import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import Divider from '@mui/material/Divider';
 
 export function PropiedadDetails({ nombre,arrendador,precio, descripcion,estado }) {
+  console.log(nombre);
+  console.log(arrendador);
+  console.log(precio);
+  console.log(estado);
+  console.log(descripcion);
+
   const maxLength = 500;
   return (
       <div className="layout">

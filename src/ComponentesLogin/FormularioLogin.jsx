@@ -47,7 +47,11 @@ export function FormularioLogin(){
                 placeholder = "Contraseña"//Muestra dentro de la caja de texto "Contraseña"
                 aria-label = "Contraseña"//->Ofrece accesibilidad para aquellas personas que no tienen vision y usan programas de lectura
                 />
-                <button >Iniciar Sesión</button>
+                <button >
+                    <a href="/" className="link-text">
+                    Iniciar Sesión
+                    </a>
+                    </button>
                 
 
             </form>

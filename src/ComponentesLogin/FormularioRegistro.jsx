@@ -65,7 +65,7 @@ export function FormularioRegistro(){
 
             {/* Hipervínculo de ¿Ya tienes una cuenta? Inicia Sesión */}
             <div className="forgot-password">
-                    <a href="#">¿Ya tienes una cuenta? Inicia Sesión</a> {/*En # va el link hacia la pagina login */}
+                    <a href="/login">¿Ya tienes una cuenta? Inicia Sesión</a> {/*En # va el link hacia la pagina login */}
                 </div>
 
 

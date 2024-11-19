@@ -8,30 +8,36 @@ import './ComponentesLogin/FormularioLogin.css'
 import './ComponentesLogin/FormularioRegistro.css'
 import './App.css'
 import './index.css'
-import { PropiedadDetails } from './components/PropiedadDetails.jsx'
-
-
-
-let name =  'Perez';
 
 function App() {
 
   return (
-    <main>
 
-      <Encabezado></Encabezado>
+    <main className='homePage'>
+      
+      <BrowserRouter>
+        
+          <Route path='/formulario'>
+            <FormularioPropiedades></FormularioPropiedades>
+          </Route>
+        <Switch>
+        <Route path='/login'>
+            <FormularioLogin></FormularioLogin>
+            
+          </Route>
+          <Route path='/registro'>
+            <FormularioRegistro></FormularioRegistro>
+          </Route>
+        
+          <Route path='/'>
+            <HomePage></HomePage>
+          </Route>
+          
+        </Switch>
+        
 
-      {/* Mapeo de los apartamentos */}
-      <section className='grid'>
-        {propiedades.map((propiedad) => (
-          <Propiedad
-            key={propiedad.id}
-            nombreApartamento={propiedad.tipo_vivienda}
-            nombreArrendador={name}
-            estado={propiedad.estado}></Propiedad>
-        ))}
-      </section>
-     
+      </BrowserRouter>
+
     </main>
   )
 }

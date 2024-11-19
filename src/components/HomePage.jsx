@@ -35,9 +35,13 @@ export function HomePage(){
         {propiedades.map((propiedad) => (
             <Propiedad
             key={propiedad.id}
+            id={propiedad.id}
             tituloPropiedad={propiedad.tipo_vivienda}
             nombreArrendador={name}
-            descripcion={propiedad.descripcion}></Propiedad>
+            descripcion={propiedad.descripcion}>
+              
+
+            </Propiedad>
         ))}
       </section>
       
