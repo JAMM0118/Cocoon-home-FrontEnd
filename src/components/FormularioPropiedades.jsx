@@ -6,10 +6,6 @@ import {
 } from '@mui/material';
 import {Cancel} from '@mui/icons-material';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { HomePage } from './HomePage.jsx';
-
-
 
 export function FormularioPropiedades() {
 
