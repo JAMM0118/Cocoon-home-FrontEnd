@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 :root {
   line-height: 1.5;
   font-weight: 400;
   font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
+
+  --white: #ffff;
+  --gray: #f7f7f79d;
 
   --white: #ffff;
   --gray: #f7f7f79d;
@@ -17,5 +23,6 @@
   --parsley: #0f4d1a;
   --breaker-bay: #6ca2ac;
   --blue-bayoux: #446b71;
+  --black: #000000;
   --black: #000000;
 }

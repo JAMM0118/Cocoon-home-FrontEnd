@@ -19,6 +19,12 @@ import { List } from "@mui/material";
 
 
 export function PropiedadDetails({ nombre,arrendador,precio, descripcion,estado }) {
+  console.log(nombre);
+  console.log(arrendador);
+  console.log(precio);
+  console.log(estado);
+  console.log(descripcion);
+
   const maxLength = 500;
   return (
       <div className="layout">

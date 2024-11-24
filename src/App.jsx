@@ -1,39 +1,43 @@
-import { useState } from 'react'
-import {propiedadesHechas } from './logic/constans.js'
-import { Encabezado } from './components/Encabezado.jsx'
-import { Propiedad } from './components/Propiedad.jsx'
+import React, { useState } from 'react';
+import { FormularioLogin } from './ComponentesLogin/FormularioLogin.jsx'
+import { FormularioRegistro } from './ComponentesLogin/FormularioRegistro.jsx'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {FormularioPropiedades} from './components/FormularioPropiedades.jsx'
+import { HomePage } from './components/HomePage.jsx';
+import './ComponentesLogin/FormularioLogin.css'
+import './ComponentesLogin/FormularioRegistro.css'
 import './App.css'
-import { PropiedadDetails } from './components/PropiedadDetails.jsx'
-
-
-
-let name =  'Perez';
+import './index.css'
 
 function App() {
 
-
-  const [propiedades, setPropiedades] = useState(propiedadesHechas)
-  
   return (
-    <main>
 
-      <Encabezado></Encabezado>
+    <main className='homePage'>
+      
+      <BrowserRouter>
+        
+          <Route path='/formulario'>
+            <FormularioPropiedades></FormularioPropiedades>
+          </Route>
+        <Switch>
+        <Route path='/login'>
+            <FormularioLogin></FormularioLogin>
+            
+          </Route>
+          <Route path='/registro'>
+            <FormularioRegistro></FormularioRegistro>
+          </Route>
+        
+          <Route path='/'>
+            <HomePage></HomePage>
+          </Route>
+          
+        </Switch>
+        
 
-      {/* Mapeo de los apartamentos */}
-      <section>
-        {propiedades.map((propiedad) => (
-          <PropiedadDetails
-            key={propiedad.id}
-            nombre={propiedad.nombre}
-            arrendador={propiedad.arrendador}
-            precio={propiedad.precio}
-            descripcion={propiedad.descripcion}
-            estado={propiedad.estado}
-            >
-          </PropiedadDetails>
-        ))}
-      </section>
-     
+      </BrowserRouter>
+
     </main>
   )
 }

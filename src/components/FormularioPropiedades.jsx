@@ -1,4 +1,5 @@
 import { FormularioItems } from '../componentesFormulario/formularioItems.jsx';
+import { propiedadesHechas } from '../logic/constans.js';
 import React, { useEffect, useState } from 'react';
 import {
   Modal, Button, Card, CardContent, Typography,
@@ -6,13 +7,15 @@ import {
 } from '@mui/material';
 import {Cancel} from '@mui/icons-material';
 
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HomePage } from './HomePage.jsx';
+
 
 
 export function FormularioPropiedades() {
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(true);
+  const handleClose = ()=> setOpen(false);
 
   const [formulario, setFormulario] = useState({
     id: '',
@@ -57,7 +60,9 @@ export function FormularioPropiedades() {
   const agregarPropiedad = () => {
     if (formulario.direccion && formulario.precio && formulario.habitaciones && formulario.huespedes) {
       limpiarFormulario();
+    
       handleClose();
+      console.log(formulario);
     } else {
       alert('Por favor, llena todos los campos obligatorios');
     }
@@ -80,24 +85,20 @@ export function FormularioPropiedades() {
   useEffect(() => {
     calcularProgreso();
   }, [formulario]);
-
   return (
     <main >
-      <button className='button-create' variant="outlined" color="primary" onClick={handleOpen}>
-        Abrir Formulario
-      </button>
       <Modal open={open} onClose={handleClose} style={{ padding: '16px', maxWidth: '600px', margin: '0 auto' }}>
 
         <Card style={{ marginBottom: '16px', maxWidth: '100vh', maxHeight: '80vh', overflowY: 'auto' }}>
           <CardContent>
 
             <Typography variant="h5" gutterBottom> Agregar Propiedad
-              <Button onClick={handleClose} style={{ float: 'right'  , borderRadius: '20px'}} variant='contained' ><Cancel /></Button>
+              <Button  href='/' style={{ float: 'right'  , borderRadius: '20px'}} variant='contained' ><Cancel /></Button>
             </Typography>
             
             <LinearProgress variant="determinate" value={progreso} style={{ margin: '16px' }} />
 
-            <FormularioItems
+            <FormularioItems href='/'
               formulario={formulario}
               agregarPropiedad={agregarPropiedad}
               handleAmenidadChange={handleAmenidadChange}
