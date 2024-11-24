@@ -1,5 +1,8 @@
 import React from "react";
 import "../Styles/PropiedadDetails.css"; 
+import CarouselReviews from "./CarouselReviews"; // Ruta al componente
+import "../styles/CarouselReviews.css";
+import ReviewComment from "./ReviewComment";
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
 import Avatar from '@mui/material/Avatar';
@@ -10,6 +13,10 @@ import ShowerIcon from '@mui/icons-material/Shower';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import Divider from '@mui/material/Divider';
+import { List } from "@mui/material";
+
+
+
 
 export function PropiedadDetails({ nombre,arrendador,precio, descripcion,estado }) {
   const maxLength = 500;
@@ -37,55 +44,92 @@ export function PropiedadDetails({ nombre,arrendador,precio, descripcion,estado 
         </Stack>
         </main>
       </div>
-
+      
       <div className="additional-info">
-        <div className="box-servicios">
-          <button className="button-servicios"> <WifiIcon fontSize="large" color="primary"/>Conexion Wifi</button>
-          <button className="button-servicios"> <CropFreeIcon fontSize="large" color="primary"/>Metros Cuadrados</button>
-          <button className="button-servicios"> <DirectionsCarIcon fontSize="large" color="primary"/>Estacionamiento</button>
-          <button className="button-servicios"> <ShowerIcon fontSize="large" color="primary"/>Baño</button>
-          <button className="button-servicios"> <ElectricalServicesIcon fontSize="large" color="primary"/>Servicios publicos</button>
+      <div className="box-servicios">
+            <button className="button-servicios"> <WifiIcon fontSize="large" color="primary"/>Conexion Wifi</button>
+            <button className="button-servicios"> <CropFreeIcon fontSize="large" color="primary"/>Metros Cuadrados</button>
+            <button className="button-servicios"> <DirectionsCarIcon fontSize="large" color="primary"/>Estacionamiento</button>
+            <button className="button-servicios"> <ShowerIcon fontSize="large" color="primary"/>Baño</button>
+            <button className="button-servicios"> <ElectricalServicesIcon fontSize="large" color="primary"/>Servicios publicos</button>
         </div>
-        <Divider variant="middle"/>
-        <div className="texto-subtitulo">
-          <h2 >Ubicacion</h2>
-          <p>Cra 9A #85-76 barrio principe, tulua, valle del cauca, colombia.</p>
-          <p>Ir al mapa</p>
+        <div class="principal-info">
+        
+          <div class="info-item">
+          <h2>Ubicación</h2>
+          
+          
+          <p>Cra 9A #85-76, Barrio Príncipe, Tuluá, Valle del Cauca, Colombia</p>
+          </div>
+          <div class="title-wrapper">
+          <div class="title-divider"></div>
+          <h2 >Descripción</h2>
+          </div>
+          <ReviewComment text={descripcion} maxVisibleChars={300} />
+          
+          <div class="title-wrapper">
+          <div class="title-divider"></div>
+          <h2>Reglas</h2>
+          </div>
+          <div class="rules-section">
+            <ul class="rules-list">
+              <li>No se permiten mascotas.</li>
+              <li>No hacer ruido después de las 10 PM.</li>
+              <li>Pagar el alquiler a tiempo.</li>
+              <li>Mantener el área limpia.</li>
+              <li>No fumar dentro de la propiedad.</li>
+              <li>Reportar daños inmediatamente.</li>
+            </ul>
+          </div>
+          <div class="title-wrapper">
+          <div class="title-divider"></div>
+          <h2>Tipo de vivienda</h2>
+          </div>
+          <p>Apartaestudio</p>
+          <div class="title-wrapper">
+          <div class="title-divider"></div>
+          <h2>Reservas</h2>
+          </div>
+          <p>Calendario de reservas</p>
+          <div class="title-wrapper">
+          <div class="title-divider"></div>
+          <h2>Reseñas</h2>
+          </div>
+          <CarouselReviews/>
+
+          
+
+          <div class="landlord-card">
+            <img src="../public/images/revelo.png" alt="Foto del arrendador" class="landlord-image" />
+            <div class="landlord-info">
+              <h3 class="landlord-name">{arrendador}</h3>
+              <p class="landlord-rating">
+                <span>Calificación:</span>
+                <Rating name="read-only" value={4.5} readOnly precision={0.5} size="small" />
+              </p>
+              <p class="landlord-registered">Registrado hace 2 años</p>
+            
+          </div>
+          </div>
+          <div>
+            <h3>Sobre mi</h3>
+            <p>Me gusta viajar y conocer nuevas culturas. Soy una persona amigable y me gusta conocer gente nueva.</p>
+            <p>Si tienes alguna pregunta sobre la propiedad, no dudes en contactarme.</p>
+          <button class="button-contact">Contactar</button>
+          </div>
+          
+          
+          
+          
+          
         </div>
-        <Divider variant="middle"/>
-        <h2 >Descripcion</h2>
-        <p>{maxText(descripcion,maxLength)}</p>
-        <Divider variant="middle"/>
-        <h2>Reglas</h2>
-        <p>Aqui van las reglas</p>
-        <Divider variant="middle"/>
-        <h2>Tipo de vivienda</h2>
-        <p>Aqui va el tipo de vivienda</p>
-        <Divider variant="middle"/>
-        <h2>Reservas</h2>
-        <p>Calendario de reservas</p>
-        <Divider variant="middle"/>
-        <h2>Reseñas</h2>
-        <p>opiniones de usuarios</p>
-        <Divider variant="middle"/>
-        <h2>Reglas</h2>
-        <p>Aqui van las reglas</p>
-        <Divider variant="middle"/>
-        <h3>Arrendador: {arrendador}</h3>
-        <Divider variant="middle"/>
         <h2>Mapa en google</h2>
-        <Divider variant="middle"/>
         <h2>Propiedades similares</h2>
-        <Divider variant="middle"/>
 
       </div>
       </div>
   );
 }
 
-const maxText = (text, maxLength) => {
-  if (text.length > maxLength) {
-    return text.substring(0, maxLength) + '...';
-  }
-  return text;
-};
+
+
