@@ -1,10 +1,10 @@
-import { FormularioItems } from '../componentesFormulario/formularioItems.jsx';
 import React, { useEffect, useState } from 'react';
 import {
   Modal, Button, Card, CardContent, Typography,
   LinearProgress
 } from '@mui/material';
 import {Cancel} from '@mui/icons-material';
+import { FormularioItems } from './FormularioItems';
 
 
 export function FormularioPropiedades() {

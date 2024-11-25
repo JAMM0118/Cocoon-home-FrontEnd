@@ -1,6 +1,6 @@
 import { useState } from "react"
 import logo from "/images/CocoonIcon.png"
-import "../styles/FormularioLogin.css"
+import "../../styles/FormularioLogin.css"
 
 export function FormularioLogin() {
 
