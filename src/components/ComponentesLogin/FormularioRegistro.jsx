@@ -1,12 +1,12 @@
 import { useState } from "react"
 import logo from "/images/CocoonIcon.png"
-import "../styles/FormularioRegistro.css"
+import "../../styles/FormularioRegistro.css"
 
 export function FormularioRegistro(){  
 
     const[usuario,setUsuario] = useState("");
     const [rol, setRol] = useState('');
-    const [esEstudiante, setEsEstudiante] = useState('');  
+    const [esEstudiante, setEsEstudiante] = useState("");  
     const[password,setPassword] = useState("");
     const [correo, setCorreo] = useState("");
     const [telefono, setTelefono] = useState("");
@@ -108,7 +108,7 @@ export function FormularioRegistro(){
                 aria-label = "Ocupacion"//->Ofrece accesibilidad para aquellas personas que no tienen vision y usan programas de lectura
                 />
                 <select value={rol} onChange={evento => setRol(evento.target.value)}>
-                    <option value="" disabled>Seleccione una opcion</option>
+                    <option value="" disabled>Tipo de usuario</option>
                     <option value="Arrendador"> Arrendador</option>
                     <option value="Arrendatario">Arrendatario</option>
                 </select>
@@ -117,6 +117,10 @@ export function FormularioRegistro(){
                     <option value="true"> Si</option>
                     <option value="false">No</option>
                 </select>
+
+                {
+                (esEstudiante == 'true') &&
+                <section>Prueba</section>}
             </form>
                 <button  onClick={handleSubmit} className="button-register">Registrarse</button>
             
