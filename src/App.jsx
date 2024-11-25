@@ -4,10 +4,8 @@ import { FormularioRegistro } from './ComponentesLogin/FormularioRegistro.jsx'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import {FormularioPropiedades} from './components/FormularioPropiedades.jsx'
 import { HomePage } from './components/HomePage.jsx';
-import './ComponentesLogin/FormularioLogin.css'
-import './ComponentesLogin/FormularioRegistro.css'
-import './App.css'
-import './index.css'
+import './styles/App.css'
+import './styles/index.css'
 
 function App() {
 
@@ -34,7 +32,6 @@ function App() {
           </Route>
           
         </Switch>
-        
 
       </BrowserRouter>
 
