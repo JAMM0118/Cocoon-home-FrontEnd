@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { FormularioLogin } from './ComponentesLogin/FormularioLogin.jsx'
-import { FormularioRegistro } from './ComponentesLogin/FormularioRegistro.jsx'
+import { FormularioLogin } from './components/ComponentesLogin/FormularioLogin.jsx'
+import { FormularioRegistro } from './components/ComponentesLogin/FormularioRegistro.jsx'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import {FormularioPropiedades} from './components/FormularioPropiedades.jsx'
-import { HomePage } from './components/HomePage.jsx';
+import {FormularioPropiedades} from './components/componentesFormulario/FormularioPropiedades.jsx'
+import { HomePage } from './components/componentesHome/HomePage.jsx';
 import './styles/App.css'
 import './styles/index.css'
 

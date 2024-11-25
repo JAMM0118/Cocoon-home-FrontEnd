@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormularioPropiedades } from './FormularioPropiedades.jsx';
+import { FormularioPropiedades } from './componentesFormulario/FormularioPropiedades.jsx';
 
 function openFormulario() {
   console.log('openFormulario')

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import {cargarArrendadores, cargarPropiedades, propiedadesHechas } from '../logic/constans.js'
+import {cargarArrendadores, cargarPropiedades, propiedadesHechas } from '../../logic/constans.js'
 import { EncabezadoHome } from './EncabezadoHome.jsx'
-import { Propiedad } from './Propiedad.jsx'
-import { MensajesHome } from './mensajesHome.jsx'
+import { Propiedad } from '../componentesPropiedades/Propiedad.jsx'
+import { MensajesHome } from './MensajesHome.jsx'
 
 
 let name =  'Perez';
