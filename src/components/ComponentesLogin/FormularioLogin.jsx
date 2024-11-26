@@ -1,6 +1,9 @@
 import { useState } from "react"
 import logo from "/images/CocoonIcon.png"
 import "../../styles/FormularioLogin.css"
+import { loginUser } from "../../logic/constans";
+import Swal from 'sweetalert2';
+
 
 export function FormularioLogin() {
 
@@ -17,6 +20,24 @@ export function FormularioLogin() {
             return
         }
         setError(false)
+
+        const data = {
+            "username": usuario,
+            "password":password
+        }
+        if(loginUser(data).then(([data, ok]) => {
+            if (ok) {
+                Swal.fire({
+                    title: 'Sesión Iniciada Correctamente',
+                    icon: 'success',
+                    confirmButtonText: 'Cerrar'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = '/'
+                    }
+                  });
+                }
+        }));
     }
 
     return (
@@ -47,7 +68,7 @@ export function FormularioLogin() {
                         placeholder="Contraseña"//Muestra dentro de la caja de texto "Contraseña"
                         aria-label="Contraseña"//->Ofrece accesibilidad para aquellas personas que no tienen vision y usan programas de lectura
                     />
-                    <button >Iniciar Sesión</button>
+                    <button>Iniciar Sesión</button>
 
 
                 </form>

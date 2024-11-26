@@ -1,5 +1,7 @@
 const urlPropiedades = 'https://backend-cocoon-project.onrender.com/api/propiedades/';
 const urlArrendadores = 'https://backend-cocoon-project.onrender.com/api/arrendadores/';
+const urlRegisterUser = 'https://backend-cocoon-project.onrender.com/auth/register';
+const urlLoginUser = 'https://backend-cocoon-project.onrender.com/auth/login';
 export const cargarArrendadores = async () => {
   const array = [];
   // const res = await fetch('data.json');
@@ -18,6 +20,56 @@ export const cargarArrendadores = async () => {
 
   return array;
 };
+
+export const registerUser = async (user) => {
+  const respose = await fetch(urlRegisterUser, {
+    method: 'POST',  
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!respose.ok) {
+    alert('Error al registrar el usuario');
+    throw new Error('Error al registrar el usuario');
+    
+  }
+
+  const data = await respose.json();
+  alert('Usuario registrado correctamente');
+  console.log(data);
+  return [data,true];
+}
+
+export const loginUser = async (user) => {
+
+  const respose = await fetch(urlLoginUser, {
+    method: 'POST',  
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!respose.ok) {
+    alert('Error al iniciar sesion');
+    throw new Error('Error al iniciar sesion');
+    
+  }
+
+  const data = await respose.json();
+  
+
+
+
+  console.log(data);
+  localStorage.setItem('token', data.token);
+
+  
+  return [data,true];
+}
+
 
 export const cargarPropiedades = async () => {
   const array = [];
