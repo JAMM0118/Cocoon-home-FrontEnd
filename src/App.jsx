@@ -1,54 +1,72 @@
-import { useState, useEffect } from 'react'
-import {cargarArrendadores, cargarPropiedades, propiedadesHechas } from './logic/constans.js'
-import { EncabezadoHome } from './components/EncabezadoHome.jsx'
-import { Propiedad } from './components/Propiedad.jsx'
-import { MensajesHome } from './components/mensajesHome.jsx'
-import './App.css'
-import './index.css'
- 
 
-
-
-let name =  'Perez';
+import TenantProfile from './ComponentesProfile/TenantProfile.jsx'; // Importa el componente TenantProfile
+import OwnerProfile from './ComponentesProfile/OwnerProfile.jsx';   // Importa el componente OwnerProfile
+import './App.css';
+import './index.css';
 
 function App() {
-
-
-  const [propiedades, setPropiedades] = useState([]);
-  const [arrendadores, setArrendadores] = useState([]);
-  const cargarDatos = async () => {
-    const getPropiedades = await cargarPropiedades();
-    const getArrendadores = await cargarArrendadores();
-    console.log(getPropiedades);
-    console.log(getArrendadores);
-    setPropiedades([...getPropiedades]);
-    setArrendadores([...getArrendadores]);
+  // Datos de ejemplo para OwnerProfile
+  const ownerExampleData = {
+    name: 'Juan Pérez',
+    profilePic: '/example-profile.jpg',
+    bio: 'Arrendador con experiencia en propiedades urbanas.',
+    email: 'juan.perez@example.com',
+    phone: '+52 55 9876 5432',
+    properties: [
+      {
+        id: 1,
+        name: 'Departamento en Condesa',
+        photos: ['/condesa1.jpg', '/condesa2.jpg'],
+        location: 'Condesa, CDMX',
+        monthlyPrice: 12000,
+        details: {
+          rooms: 2,
+          bathrooms: 2,
+          size: '100m²',
+          services: ['Agua', 'Gas', 'Internet'],
+        },
+        rules: ['No mascotas', 'No fiestas'],
+      },
+    ],
+    verifications: {
+      idVerified: true,
+      propertyOwnership: true,
+    },
   };
 
-  useEffect(() =>cargarDatos, []);
-  
-  
-  return (
-    
-    <main className='homePage'>
+  // Datos de ejemplo para TenantProfile
+  const tenantExampleData = {
+    name: 'Ana García',
+    profilePic: '/example-tenant-profile.jpg',
+    bio: 'Estudiante de ingeniería en busca de un apartamento cerca de la universidad.',
+    email: 'ana.garcia@example.com',
+    phone: '+57 123 456 7890',
+    rentalHistory: [
+      {
+        comment: 'Muy buena inquilina.',
+        previousRentals: 2,
+      },
+    ],
+    preferences: {
+      propertyTypes: ['Estudio', 'Departamento compartido', 'Casa'],
+      monthlyBudget: '$500 - $1000',
+      preferredLocation: 'Cerca de la universidad',
+    },
+    verifications: {
+      idVerified: true,
+      incomeProof: true,
+      socialMedia: true,
+    },
+  };
 
-      <EncabezadoHome></EncabezadoHome>
-        {/* Mensajes */}
-        <MensajesHome></MensajesHome>
-      <h1 className='tituloHome'>Propiedades de interes</h1>
-      {/* Mapeo de los apartamentos */}
-      <section className='grid'>
-        {propiedades.map((propiedad) => (
-          <Propiedad
-            key={propiedad.id}
-            tituloPropiedad={propiedad.tipo_vivienda}
-            nombreArrendador={arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name}
-            descripcion={propiedad.descripcion}></Propiedad>
-        ))}
-      </section>
-     
+  return (
+    <main className="homePage">
+      {/* Componente OwnerProfile */}
+
+      <OwnerProfile userData={ownerExampleData} />
+
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
