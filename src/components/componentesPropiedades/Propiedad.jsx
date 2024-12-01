@@ -2,59 +2,19 @@
 import ReactDOM from "react-dom/client";
 import React  from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useHistory } from 'react-router-dom';
+
 
 const theme = createTheme();
 
 export function Propiedad({id,tituloPropiedad, nombreArrendador,descripcion}) {
   const maxLength = 30;
+  const history = useHistory(); // Hook para la navegación
 
-  //funcion que hace muestra el details
-  const openDetails = ()=>{
-    const newWindow = window.open("", "_blank", "width=800,height=600");
-    if (!newWindow) {
-      alert("Permite ventanas emergentes para usar esta funcionalidad.");
-      return;
-    }
+  const openDetails = () => {
+    history.push(`/propiedad/${id}`); // Navega a la ruta de detalles con el ID
+  };
 
-    // Crear un contenedor React
-    const container = newWindow.document.createElement("div");
-    newWindow.document.body.appendChild(container);
-
-    // Copiar estilos personalizados (CSS)
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "../Styles/PropiedadDetails.css"; // Ruta al archivo CSS
-    newWindow.document.head.appendChild(link);
-
-    // Copiar estilos de MUI
-    const muiStyles = document.querySelectorAll("style[data-emotion]");
-    muiStyles.forEach((style) => {
-      newWindow.document.head.appendChild(style.cloneNode(true));
-    });
-
-    // Usar ReactDOM.createRoot para renderizar el componente
-    const root = ReactDOM.createRoot(container);
-    root.render(
-      <ThemeProvider theme={theme}>
-         <PropiedadDetails
-        arrendador={nombreArrendador}
-        descripcion={descripcion}
-        estado={"disponible"}
-        nombre={tituloPropiedad}
-        precio={12000}
-        key={id}
-        
-        ></PropiedadDetails>
-      </ThemeProvider>
-    );
-
-    // Limpiar al cerrar la ventana
-    newWindow.onbeforeunload = () => {
-      root.unmount();
-    };
-   
-   
-  }
 
 
 

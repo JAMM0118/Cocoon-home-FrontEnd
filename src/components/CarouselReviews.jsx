@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Rating from '@mui/material/Rating';
 import ReviewComment from "./ReviewComment";
-import "../styles/CarouselReviews.css";
+import "../Styles/CarouselReviews.css";
 
 const reviews = [
   { id: 1, name: "Juan Pérez", rating: 4.5, date: "15 de noviembre, 2024", comment: "Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.Muy buen lugar, cómodo y limpio.", photo: "../public/images/revelo.png" },

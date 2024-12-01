@@ -1,5 +1,5 @@
 /* Contenedor principal */
-.layout {
+.layout-details {
   display: grid;
   grid-template-rows: auto auto 1fr ;
   grid-template-columns: 1fr;
@@ -13,7 +13,7 @@
 }
 
 @media (min-width: 800px) {
-  .layout {
+  .layout-details {
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr;
@@ -26,12 +26,12 @@
 }
 
 
-aside{
+.layout-details aside{
   grid-area: sidebar;
   background: #f8f8f8;
 }
 
-main {
+.layout-details main {
   grid-area: main;
   background-color: #f8f8f8;;
 }
@@ -273,4 +273,36 @@ main {
 
 .reviews-section {
   grid-area: reviews;
+}
+
+
+.button-reserva {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-reserva:hover {
+  background-color: #0056b3;
+}
+
+.confirmation-message {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+}
+
+.confirmation-message h3 {
+  margin: 0;
+  color: #388e3c;
+}
+
+.confirmation-message p {
+  margin: 5px 0;
+  color: #2e7d32;
 }

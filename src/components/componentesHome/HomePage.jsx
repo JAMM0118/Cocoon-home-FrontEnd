@@ -10,7 +10,6 @@ let name =  'Perez';
 export function HomePage(){
     
   const [propiedades, setPropiedades] = useState([]);
-  const [arrendadores, setArrendadores] = useState([]);
   // const cargarDatos = async () => {
   //   const getPropiedades = await cargarPropiedades();
   //   const getArrendadores = await cargarArrendadores();
