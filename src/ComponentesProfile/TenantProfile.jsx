@@ -79,7 +79,6 @@ const TenantProfile = () => {
             Cargar más comentarios
           </button>
         )}
-
       </div>
       
       <div className="preferences">

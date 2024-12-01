@@ -1,4 +1,16 @@
 import React, { useState } from 'react';
+import { 
+  MapPin, 
+  DollarSign, 
+  Home, 
+  FileText, 
+  Key, 
+  Phone, 
+  Mail, 
+  Check, 
+  Building,
+  MessageCircle 
+} from 'lucide-react';
 import './OwnerProfile.css';
 
 const OwnerProfile = () => {
@@ -81,8 +93,8 @@ const OwnerProfile = () => {
       
       <div className="contact-info">
         <h3 className="section-title">Información de Contacto</h3>
-        <p>📞 Teléfono: +57 123 456 7890</p>
-        <p>✉️ Correo electrónico: ejemplo@correo.com</p>
+        <p><Phone className="icon" /> Teléfono: +57 123 456 7890</p>
+        <p><Mail className="icon" /> Correo electrónico: ejemplo@correo.com</p>
       </div>
       
       <div className="properties">
@@ -96,11 +108,11 @@ const OwnerProfile = () => {
                 className="property-pic" 
               />
               <div className={`property-details ${property.status === 'reservado' ? 'reserved' : 'available'}`}>
-                <p>📍 Ubicación: {property.location}</p>
-                <p>💰 Precio mensual: ${property.price}</p>
-                <p>🏠 Tamaño: {property.size}</p>
-                <p>📌 Reglas: {property.rules}</p>
-                <p>🔑 Estado: 
+                <p><MapPin className="icon" /> Ubicación: {property.location}</p>
+                <p><DollarSign className="icon" /> Precio mensual: ${property.price}</p>
+                <p><Home className="icon" /> Tamaño: {property.size}</p>
+                <p><FileText className="icon" /> Reglas: {property.rules}</p>
+                <p><Key className="icon" /> Estado: 
                   <span className={`property-status ${property.status}`}>
                     {property.status === 'reservado' ? 'Reservado' : 'Disponible'}
                   </span>
@@ -124,7 +136,7 @@ const OwnerProfile = () => {
         <div className="comments-section">
           {comments.slice(0, visibleComments).map(comment => (
             <div key={comment.id} className="comment">
-              <p>💬 {comment.text}</p>
+              <p><MessageCircle className="icon" /> {comment.text}</p>
               <small>- {comment.author}, {comment.date}</small>
             </div>
           ))}
@@ -141,8 +153,8 @@ const OwnerProfile = () => {
       
       <div className="verifications">
         <h3 className="section-title">Verificaciones</h3>
-        <p>🆔 Documento de identificación: <span className="verification-status">Verificado</span></p>
-        <p>🏘️ Propiedad de los inmuebles: <span className="verification-status">Verificado</span></p>
+        <p><FileText className="icon" /> Documento de identificación: <span className="verification-status">Verificado</span></p>
+        <p><Building className="icon" /> Propiedad de los inmuebles: <span className="verification-status">Verificado</span></p>
       </div>
     </div>
   );
