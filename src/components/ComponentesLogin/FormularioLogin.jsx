@@ -25,7 +25,18 @@ export function FormularioLogin() {
             "username": usuario,
             "password":password
         }
+
+        Swal.fire({
+            title: 'Iniciando Sesión...',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        });
+        
+
         if(loginUser(data).then(([data, ok]) => {
+            
             if (ok) {
                 Swal.fire({
                     title: 'Sesión Iniciada Correctamente',

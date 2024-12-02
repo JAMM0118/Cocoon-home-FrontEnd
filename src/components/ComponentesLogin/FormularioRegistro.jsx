@@ -48,9 +48,26 @@ export function FormularioRegistro() {
             "constancia_universidad": (esEstudiante == "true") ? "constaci" : "None",
             "universidad": (esEstudiante == "true") ? universidad : "None"
         }
+
+
+        Swal.fire({
+            title: 'Registrando usuario...',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        });
         if(registerUser(data).then(([data, ok]) => {
             if (ok) {
-                window.location.href = '/login'
+                Swal.fire({
+                    title: 'Usuario registrado correctamente',
+                    icon: 'success',
+                    confirmButtonText: 'Cerrar'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/login'
+                      }
+                  });
             }
         }));
          

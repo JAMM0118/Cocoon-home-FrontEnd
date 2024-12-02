@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const urlPropiedades = 'https://backend-cocoon-project.onrender.com/api/propiedades/';
 const urlArrendadores = 'https://backend-cocoon-project.onrender.com/api/arrendadores/';
 const urlRegisterUser = 'https://backend-cocoon-project.onrender.com/auth/register';
@@ -8,7 +10,7 @@ export const cargarArrendadores = async () => {
   const res = await fetch(urlArrendadores, {
     method: 'GET',
     headers: {
-      'Authorization': 'Token b2f57cf638b25ddd02390317de5017852342ab97'
+      'Authorization': `Token ${localStorage.getItem('token')}`
     }
   });
   const data = await res.json();
@@ -53,20 +55,25 @@ export const loginUser = async (user) => {
   });
 
   if (!respose.ok) {
-    alert('Error al iniciar sesion');
+    Swal.fire({
+      title: 'Error al iniciar sesion',
+      icon: 'error',
+      confirmButtonText: 'Cerrar'
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/login'
+      }});
     throw new Error('Error al iniciar sesion');
     
   }
 
   const data = await respose.json();
-  
-
 
 
   console.log(data);
   localStorage.setItem('token', data.token);
 
-  
   return [data,true];
 }
 
@@ -77,8 +84,9 @@ export const cargarPropiedades = async () => {
   const res = await fetch(urlPropiedades, {
     method: 'GET',
     headers: {
-      'Authorization': 'Token b2f57cf638b25ddd02390317de5017852342ab97'
+      'Authorization': `Token ${localStorage.getItem('token')}`
     }
+
   });
   const data = await res.json();
 
