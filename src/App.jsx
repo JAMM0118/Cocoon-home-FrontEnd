@@ -1,8 +1,16 @@
 
 import TenantProfile from './ComponentesProfile/TenantProfile.jsx'; // Importa el componente TenantProfile
 import OwnerProfile from './ComponentesProfile/OwnerProfile.jsx';   // Importa el componente OwnerProfile
-import './App.css';
-import './index.css';
+// import './App.css';
+// import './index.css';
+import React, { useState } from 'react';
+import { FormularioLogin } from './components/ComponentesLogin/FormularioLogin.jsx'
+import { FormularioRegistro } from './components/ComponentesLogin/FormularioRegistro.jsx'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {FormularioPropiedades} from './components/componentesFormulario/FormularioPropiedades.jsx'
+import { HomePage } from './components/componentesHome/HomePage.jsx';
+import './styles/App.css'
+import './styles/index.css'
 
 function App() {
   // Datos de ejemplo para OwnerProfile
@@ -59,11 +67,36 @@ function App() {
     },
   };
 
-  return (
-    <main className="homePage">
-      {/* Componente OwnerProfile */}
+//   return (
+//     <main className="homePage">
+//       {/* Componente OwnerProfile */}
 
-      <OwnerProfile userData={ownerExampleData} />
+//       <OwnerProfile userData={ownerExampleData} />
+  return (
+
+    <main className='homePage'>
+      
+      <BrowserRouter>
+        
+          <Route path='/formulario'>
+            <FormularioPropiedades></FormularioPropiedades>
+          </Route>
+        <Switch>
+        <Route path='/login'>
+            <FormularioLogin></FormularioLogin>
+            
+          </Route>
+          <Route path='/registro'>
+            <FormularioRegistro></FormularioRegistro>
+          </Route>
+        
+          <Route path='/'>
+            <HomePage></HomePage>
+          </Route>
+          
+        </Switch>
+
+      </BrowserRouter>
 
     </main>
   );

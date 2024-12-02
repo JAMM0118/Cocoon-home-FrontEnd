@@ -9,15 +9,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+ 
+ 
   }
-
+ 
   /* Nuevo: Contenedor para el logo */
  .logo-container {
   width: 100%;
   display: flex;          /* Nuevo: Usar flexbox */
   justify-content: center; /* Nuevo: Centrar horizontalmente */
   margin-bottom: 20px;
-}
+ }
 
 /* Nuevo: Estilos para el logo */
 .logo {

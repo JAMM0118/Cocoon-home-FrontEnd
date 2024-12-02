@@ -1,6 +1,6 @@
 import { TextField} from '@mui/material';
 import { Search } from '@mui/icons-material';
-import { Encabezado } from './Encabezado.jsx';
+import { Encabezado } from '../Encabezado.jsx';
 
 export function EncabezadoHome() {
   return (

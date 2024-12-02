@@ -14,6 +14,31 @@
   border-radius: 20px;
 } */
 
+.styled-link {
+  display: inline-block;            
+  padding: 7px 10px;                 
+  background-color: var(--tarawera);
+  margin: 0.2rem;       
+  color: #ffffff;                 
+  text-decoration: none;            
+  font-size: 16px;                  
+  font-weight: bold;               
+  border-radius: 8px;               
+  transition: all 0.3s ease;      
+}
+
+.styled-link:hover {
+  background-color: #0056b3;       
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-2px);      
+}
+
+.styled-link:active {
+  background-color: #003d80;       
+  transform: translateY(2px);      
+}
+
+
 .headerPrincipal{
   background-repeat: no-repeat;
   background-size: cover;
