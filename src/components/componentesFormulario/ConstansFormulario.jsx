@@ -13,10 +13,6 @@ export const renderPreview = (file) => {
 
 
 
-
-
- 
-  
   else if (file.type.startsWith('video/')) {
     return ((<video src={URL.createObjectURL(file)}
       alt="Preview"

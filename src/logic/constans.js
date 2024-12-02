@@ -1,12 +1,16 @@
+import Swal from "sweetalert2";
+
 const urlPropiedades = 'https://backend-cocoon-project.onrender.com/api/propiedades/';
 const urlArrendadores = 'https://backend-cocoon-project.onrender.com/api/arrendadores/';
+const urlRegisterUser = 'https://backend-cocoon-project.onrender.com/auth/register';
+const urlLoginUser = 'https://backend-cocoon-project.onrender.com/auth/login';
 export const cargarArrendadores = async () => {
   const array = [];
   // const res = await fetch('data.json');
   const res = await fetch(urlArrendadores, {
     method: 'GET',
     headers: {
-      'Authorization': 'Token b2f57cf638b25ddd02390317de5017852342ab97'
+      'Authorization': `Token ${localStorage.getItem('token')}`
     }
   });
   const data = await res.json();
@@ -19,14 +23,70 @@ export const cargarArrendadores = async () => {
   return array;
 };
 
+export const registerUser = async (user) => {
+  const respose = await fetch(urlRegisterUser, {
+    method: 'POST',  
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!respose.ok) {
+    alert('Error al registrar el usuario');
+    throw new Error('Error al registrar el usuario');
+    
+  }
+
+  const data = await respose.json();
+  alert('Usuario registrado correctamente');
+  console.log(data);
+  return [data,true];
+}
+
+export const loginUser = async (user) => {
+
+  const respose = await fetch(urlLoginUser, {
+    method: 'POST',  
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!respose.ok) {
+    Swal.fire({
+      title: 'Error al iniciar sesion',
+      icon: 'error',
+      confirmButtonText: 'Cerrar'
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/login'
+      }});
+    throw new Error('Error al iniciar sesion');
+    
+  }
+
+  const data = await respose.json();
+
+
+  console.log(data);
+  localStorage.setItem('token', data.token);
+
+  return [data,true];
+}
+
+
 export const cargarPropiedades = async () => {
   const array = [];
   // const res = await fetch('data.json');
   const res = await fetch(urlPropiedades, {
     method: 'GET',
     headers: {
-      'Authorization': 'Token b2f57cf638b25ddd02390317de5017852342ab97'
+      'Authorization': `Token ${localStorage.getItem('token')}`
     }
+
   });
   const data = await res.json();
 

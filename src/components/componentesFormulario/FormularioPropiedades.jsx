@@ -3,14 +3,21 @@ import {
   Modal, Button, Card, CardContent, Typography,
   LinearProgress
 } from '@mui/material';
-import {Cancel} from '@mui/icons-material';
+import { Cancel } from '@mui/icons-material';
 import { FormularioItems } from './FormularioItems';
+import Swal from 'sweetalert2';
 
+
+function dejloahu(
+
+){
+  
+}
 
 export function FormularioPropiedades() {
 
   const [open, setOpen] = useState(true);
-  const handleClose = ()=> setOpen(false);
+  const handleClose = () => setOpen(false);
 
   const [formulario, setFormulario] = useState({
     id: '',
@@ -80,27 +87,36 @@ export function FormularioPropiedades() {
     calcularProgreso();
   }, [formulario]);
   return (
-    <main >
-      <Modal open={open} onClose={handleClose} style={{ padding: '16px', maxWidth: '600px', margin: '0 auto' }}>
 
+    
+    <main>
+      {localStorage.getItem('token') === null && (
+    // Add any content you want to render when the token is null
+    Swal.fire({
+      title: 'No tienes permiso para acceder',
+      icon: 'error',
+      confirmButtonText: 'Cerrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/login'
+      }
+    })
+  )}
+      <Modal open={open} onClose={handleClose} style={{ padding: '16px', maxWidth: '600px', margin: '0 auto' }}>
         <Card style={{ marginBottom: '16px', maxWidth: '100vh', maxHeight: '80vh', overflowY: 'auto' }}>
           <CardContent>
-
             <Typography variant="h5" gutterBottom> Agregar Propiedad
-              <Button  href='/' style={{ float: 'right'  , borderRadius: '20px'}} variant='contained' ><Cancel /></Button>
+              <Button href='/' style={{ float: 'right', borderRadius: '20px' }} variant='contained'><Cancel /></Button>
             </Typography>
-            
             <LinearProgress variant="determinate" value={progreso} style={{ margin: '16px' }} />
-
             <FormularioItems
               formulario={formulario}
               agregarPropiedad={agregarPropiedad}
               handleAmenidadChange={handleAmenidadChange}
               handleFileChange={handleFileChange}
-              handleInputChange={handleInputChange}></FormularioItems>
-
+              handleInputChange={handleInputChange}>
+            </FormularioItems>
           </CardContent>
-          
         </Card>
       </Modal>
 

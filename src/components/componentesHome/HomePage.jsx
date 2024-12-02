@@ -11,13 +11,7 @@ export function HomePage(){
     
   const [propiedades, setPropiedades] = useState([]);
   const [arrendadores, setArrendadores] = useState([]);
-  // const cargarDatos = async () => {
-  //   const getPropiedades = await cargarPropiedades();
-  //   const getArrendadores = await cargarArrendadores();
-  //   console.log(getPropiedades);
-  //   console.log(getArrendadores);
-  //   // setArrendadores([...getArrendadores]);
-  // };
+  
  
 
   useEffect(() => setPropiedades([...propiedadesHechas]), []);
