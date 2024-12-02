@@ -1,11 +1,6 @@
-import { useEffect } from 'react';
-
-
-import TenantProfile from './ComponentesProfile/TenantProfile.jsx'; // Importa el componente TenantProfile
-import OwnerProfile from './ComponentesProfile/OwnerProfile.jsx';   // Importa el componente OwnerProfile
-// import './App.css';
-// import './index.css';
-import React, { useState } from 'react';
+import TenantProfile from './components/ComponentesProfile/TenantProfile.jsx'; // Importa el componente TenantProfile
+import OwnerProfile from './components/ComponentesProfile/OwnerProfile.jsx';   // Importa el componente OwnerProfile
+import React, { useState, useEffect } from 'react';
 import { FormularioLogin } from './components/ComponentesLogin/FormularioLogin.jsx'
 import { FormularioRegistro } from './components/ComponentesLogin/FormularioRegistro.jsx'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -15,17 +10,7 @@ import './styles/App.css'
 import './styles/index.css'
 
 function App() {
-  useEffect(() => {
-    const sessionFlag = 'session_initialized';
 
-    if (!sessionStorage.getItem(sessionFlag)) {
-      // Limpiar localStorage y establecer la bandera
-      localStorage.clear();
-      sessionStorage.setItem(sessionFlag, 'true');
-    }
-  }, []);
-
-  // Datos de ejemplo para OwnerProfile
   const ownerExampleData = {
     name: 'Juan Pérez',
     profilePic: '/example-profile.jpg',
@@ -79,11 +64,19 @@ function App() {
     },
   };
 
-//   return (
-//     <main className="homePage">
-//       {/* Componente OwnerProfile */}
+  useEffect(() => {
+    const sessionFlag = 'session_initialized';
 
-//       <OwnerProfile userData={ownerExampleData} />
+    if (!sessionStorage.getItem(sessionFlag)) {
+      // Limpiar localStorage y establecer la bandera
+      localStorage.clear();
+      sessionStorage.setItem(sessionFlag, 'true');
+    }
+  }, []);
+
+  // Datos de ejemplo para OwnerProfile
+  
+       
   return (
 
     <main className='homePage'>
@@ -95,6 +88,9 @@ function App() {
         </Route>
  
         <Switch>
+        <Route path='/perfil'>
+        <OwnerProfile userData={ownerExampleData} />
+        </Route>
        
           <Route path='/login'>
             <FormularioLogin></FormularioLogin>
