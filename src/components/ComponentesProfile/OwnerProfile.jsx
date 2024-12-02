@@ -12,6 +12,7 @@ import {
   MessageCircle 
 } from 'lucide-react';
 import './OwnerProfile.css';
+import { Encabezado } from '../Encabezado';
 
 const OwnerProfile = () => {
   const [visibleProperties, setVisibleProperties] = useState(1);
@@ -78,6 +79,8 @@ const OwnerProfile = () => {
   };
 
   return (
+    <section>
+    <Encabezado></Encabezado>
     <div className="owner-profile">
       <div className="profile-header">
         <img 
@@ -157,6 +160,7 @@ const OwnerProfile = () => {
         <p><Building className="icon" /> Propiedad de los inmuebles: <span className="verification-status">Verificado</span></p>
       </div>
     </div>
+    </section>
   );
 };
 

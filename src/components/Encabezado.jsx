@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -15,6 +15,10 @@ export function Encabezado() {
     }
   }, []);
   
+  const handleHome = () => {
+    window.location.href = '/home';
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken(null);
@@ -22,8 +26,11 @@ export function Encabezado() {
   };
   return (
     <header className='headerPrincipal'>
-      <img className='logo' src="/images/CocoonIcon.png" alt="logo" />
+      <section onClick={handleHome}>
+
+      <img className='logo' src="/images/CocoonIcon.png"  alt="logo" />
       <h2 className='nombreApp'> Cocoon</h2>
+      </section>
       <section className="contenedorMenu">
         <div className="iconos">
           <div className="icono" onClick={() => {

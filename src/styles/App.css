@@ -5,14 +5,7 @@
     aspect-ratio: 16/9;
   }
   
-  /* .headerLogo{
-    display: flex;
-    margin-bottom: 2rem;
-    border-color: var(--tarawera);
-    border-style: solid;
-    height: 100px;
-    border-radius: 20px;
-  } */
+
   
   .styled-link {
     display: inline-block;            
@@ -93,7 +86,7 @@
     height: 20px;
     background-color: var(--white);
     transform: rotate(45deg);
-    border-left: 1px solid var(--gray);
+    border-left:1px solid var(--gray);
     border-top: 1px solid var(--gray);
   
   }

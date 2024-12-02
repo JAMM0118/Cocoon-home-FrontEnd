@@ -4,6 +4,7 @@ import { Encabezado } from '../Encabezado.jsx';
 import React, { useState } from 'react';
 import './EncabezadoHome.css';
 import { propiedadesHechas } from '../../logic/constans.js';
+import { Propiedad } from '../componentesPropiedades/Propiedad.jsx';
 
 export function EncabezadoHome() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,22 +47,29 @@ export function EncabezadoHome() {
             <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
               <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-button" onClick={() => setIsModalOpen(false)}>
-                  x
+                  X
                 </button>
                 <h3 className='h3-modal'>Resultados de la Búsqueda</h3>
                 <ul className='ul-modal'>
+                  <section className='grid'>
                   {filteredItems.length > 0 ? (
                     filteredItems.map((item, index) => (
-                      <li className='li-modal' key={index}>
-                        <strong>Tipo:</strong> {item.tipo_vivienda}<br />
-                        <strong>Estado:</strong> {item.estado}<br />
-                        <strong>Precio:</strong> ${item.precio}
-
-                      </li>
-                    ))
-                  ) : (
-                    <li className='li-modal'>No se encontraron resultados</li>
-                  )}
+                      <Propiedad
+                          key={index}
+                          id={item.id}
+                          nombreArrendador={"prueba"}
+           
+                          tituloPropiedad={item.tipo_vivienda}
+                          descripcion={item.descripcion}>
+                            
+              
+                          </Propiedad>
+                    
+                  ))
+                ) : (
+                  <li className='li-modal'>No se encontraron resultados</li>
+                )}
+                </section>
                 </ul>
               </div>
             </div>

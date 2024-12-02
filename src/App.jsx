@@ -1,11 +1,6 @@
-import { useEffect } from 'react';
-
-
-import TenantProfile from './ComponentesProfile/TenantProfile.jsx'; // Importa el componente TenantProfile
-import OwnerProfile from './ComponentesProfile/OwnerProfile.jsx';   // Importa el componente OwnerProfile
-// import './App.css';
-// import './index.css';
-import React, { useState } from 'react';
+import TenantProfile from './components/ComponentesProfile/TenantProfile.jsx'; // Importa el componente TenantProfile
+import OwnerProfile from './components/ComponentesProfile/OwnerProfile.jsx';   // Importa el componente OwnerProfile
+import React, { useState, useEffect } from 'react';
 import { FormularioLogin } from './components/ComponentesLogin/FormularioLogin.jsx'
 import { FormularioRegistro } from './components/ComponentesLogin/FormularioRegistro.jsx'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -18,17 +13,6 @@ import './styles/index.css'
 
 function App() {
 
-  useEffect(() => {
-    const sessionFlag = 'session_initialized';
-
-    if (!sessionStorage.getItem(sessionFlag)) {
-      // Limpiar localStorage y establecer la bandera
-      localStorage.clear();
-      sessionStorage.setItem(sessionFlag, 'true');
-    }
-  }, []);
-
-  // Datos de ejemplo para OwnerProfile
   const ownerExampleData = {
     name: 'Juan Pérez',
     profilePic: '/example-profile.jpg',
@@ -81,30 +65,34 @@ function App() {
       socialMedia: true,
     },
   };
+
+  useEffect(() => {
+    const sessionFlag = 'session_initialized';
+
+    if (!sessionStorage.getItem(sessionFlag)) {
+      // Limpiar localStorage y establecer la bandera
+      localStorage.clear();
+      sessionStorage.setItem(sessionFlag, 'true');
+    }
+  }, []);
+
+  // Datos de ejemplo para OwnerProfile
+  
+       
   return (
 
     <main className='homePage'>
 
       <BrowserRouter>
-
-
-      <Route path='/formulario'>
-          <FormularioPropiedades></FormularioPropiedades>
-        </Route>
+      
+        <Route path='/formulario'>  <FormularioPropiedades></FormularioPropiedades></Route>
  
         <Switch>
-       
-          <Route path='/login'>
-            <FormularioLogin></FormularioLogin>
-          </Route>
-          <Route path='/registro'>
-            <FormularioRegistro></FormularioRegistro>
-          </Route>
+        <Route path='/perfil'> <OwnerProfile userData={ownerExampleData} /> </Route>
+          <Route path='/login' component={FormularioLogin}/>
+          <Route path='/registro' component={FormularioRegistro} />
           <Route path='/propiedad/:id' component={PropiedadDetails} />
-          <Route path='/'>
-            <HomePage></HomePage>
-          </Route>
-
+          <Route path='/' component={HomePage}/>
         </Switch>
       </BrowserRouter>
 
