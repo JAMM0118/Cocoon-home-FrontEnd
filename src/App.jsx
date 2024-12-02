@@ -18,7 +18,7 @@ function App() {
       
       <BrowserRouter>
         <Switch>
-          <Route path='/formulario' component={FormularioPropiedades} />
+          {/* <Route path='/formulario' component={FormularioPropiedades} /> */}
           <Route path='/login' component={FormularioLogin} />
           <Route path='/registro' component={FormularioRegistro} />
           <Route exact path='/' component={HomePage} />
