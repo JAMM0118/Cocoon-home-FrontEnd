@@ -100,20 +100,8 @@ export const cargarPropiedades = async () => {
 
 export const propiedadesHechas = [
   {
-    id: 1,
-    arrendador: 1,
-    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    direccion: "Calle 15 carrera 10b #20-30",
-    estado: "disponible",
-    fotos: "linkfotos.com",
-    precio: 120000,
-    reglas: "No hay",
-    servicios: "Ninguno",
-    tipo_vivienda: "Casa",
-    videos: "linkvideos.com",
-  },
-  {
     id: 2,
+    nombre: "casa bonita",
     arrendador: 1,
     descripcion: "Casa de playa con piscina y vista al mar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     direccion: "Calle 15 carrera 10b #20-30",
@@ -127,6 +115,7 @@ export const propiedadesHechas = [
   },
   {
     id: 3,
+    nombre: "casa lujosa",
     arrendador: 1,
     descripcion: "Casa de playa con piscina y vista al mar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     direccion: "Calle 15 carrera 10b #20-30",
@@ -167,6 +156,34 @@ export const propiedadesHechas = [
 
   {
     id: 6,
+    arrendador: 2,
+    descripcion: "Apartamento en el centro de la ciudad con excelente vista. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    direccion: "Avenida 7 #45-67",
+    estado: "disponible",
+    fotos: "linkfotos.com",
+    precio: 150000,
+    reglas: "No se permiten mascotas",
+    servicios: "Internet, Agua, Luz",
+    tipo_vivienda: "ApartaEstudio",
+    videos: "linkvideos.com",
+
+  },
+  {
+    id: 7,
+    arrendador: 2,
+    descripcion: "Apartamento en el centro de la ciudad con excelente vista. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    direccion: "Avenida 7 #45-67",
+    estado: "disponible",
+    fotos: "linkfotos.com",
+    precio: 150000,
+    reglas: "No se permiten mascotas",
+    servicios: "Internet, Agua, Luz",
+    tipo_vivienda: "ApartaEstudio",
+    videos: "linkvideos.com",
+
+  },
+  {
+    id: 8,
     arrendador: 2,
     descripcion: "Apartamento en el centro de la ciudad con excelente vista. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     direccion: "Avenida 7 #45-67",

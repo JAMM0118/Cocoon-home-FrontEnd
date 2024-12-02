@@ -10,8 +10,14 @@ let name =  'Perez';
 export function HomePage(){
     
   const [propiedades, setPropiedades] = useState([]);
+  // const cargarDatos = async () => {
+  //   const getPropiedades = await cargarPropiedades();
+  //   const getArrendadores = await cargarArrendadores();
+  //   console.log(getPropiedades);
+  //   console.log(getArrendadores);
+  //   // setArrendadores([...getArrendadores]);
+  // };
   const [arrendadores, setArrendadores] = useState([]);
-  
  
 
   useEffect(() => setPropiedades([...propiedadesHechas]), []);
@@ -29,9 +35,13 @@ export function HomePage(){
         {propiedades.map((propiedad) => (
             <Propiedad
             key={propiedad.id}
+            id={propiedad.id}
             tituloPropiedad={propiedad.tipo_vivienda}
             nombreArrendador={name}
-            descripcion={propiedad.descripcion}></Propiedad>
+            descripcion={propiedad.descripcion}>
+              
+
+            </Propiedad>
         ))}
       </section>
       

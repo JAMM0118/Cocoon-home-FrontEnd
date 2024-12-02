@@ -6,6 +6,8 @@ import { FormularioRegistro } from './components/ComponentesLogin/FormularioRegi
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { FormularioPropiedades } from './components/componentesFormulario/FormularioPropiedades.jsx'
 import { HomePage } from './components/componentesHome/HomePage.jsx';
+import { PropiedadDetails } from './components/componentesPropiedades/PropiedadDetails.jsx'
+import {propiedadesHechas } from './logic/constans.js'
 import './styles/App.css'
 import './styles/index.css'
 
@@ -83,6 +85,7 @@ function App() {
 
       <BrowserRouter>
 
+
       <Route path='/formulario'>
           <FormularioPropiedades></FormularioPropiedades>
         </Route>
@@ -98,16 +101,16 @@ function App() {
           <Route path='/registro'>
             <FormularioRegistro></FormularioRegistro>
           </Route>
+          <Route path='/propiedad/:id' component={PropiedadDetails} />
           <Route path='/'>
             <HomePage></HomePage>
           </Route>
 
         </Switch>
-
       </BrowserRouter>
 
     </main>
   );
 }
 
-export default App;
+export default App

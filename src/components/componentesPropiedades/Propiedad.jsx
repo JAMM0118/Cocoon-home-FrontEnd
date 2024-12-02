@@ -1,7 +1,25 @@
-export function Propiedad({tituloPropiedad, nombreArrendador,descripcion}) {
+
+import ReactDOM from "react-dom/client";
+import React  from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useHistory } from 'react-router-dom';
+
+
+const theme = createTheme();
+
+export function Propiedad({id,tituloPropiedad, nombreArrendador,descripcion}) {
   const maxLength = 30;
+  const history = useHistory(); // Hook para la navegación
+
+  const openDetails = () => {
+    history.push(`/propiedad/${id}`); // Navega a la ruta de detalles con el ID
+  };
+
+
+
+
   return (
-    <main className='propiedad'>
+    <main className='propiedad' onClick={openDetails}>
       <section className="contenedorImagenes">
         <img className='imagenes' src="/images/casas.jpg" alt="" />
       </section>
