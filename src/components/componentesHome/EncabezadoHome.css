@@ -11,9 +11,7 @@
     z-index: 1000;  /* Asegura que esté sobre otros elementos */
   }
   
-  strong {
-    color: #333;
-  }
+  
   .modal-small {
     background: white;
     padding: 20px;
@@ -27,8 +25,8 @@
   
   .close-button {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 100px;
+    right: 670px;
     background: none;
     border: none;
     font-size: 20px;

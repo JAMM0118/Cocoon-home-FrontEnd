@@ -11,6 +11,7 @@ import {
   Key 
 } from 'lucide-react';
 import './TenantProfile.css';
+import { Encabezado } from '../Encabezado';
 
 const TenantProfile = () => {
   const [visibleComments, setVisibleComments] = useState(2);
@@ -42,6 +43,8 @@ const TenantProfile = () => {
   };
 
   return (
+    <section>
+    <Encabezado></Encabezado>
     <div className="tenant-profile">
       <div className="profile-header">
         <img 
@@ -97,6 +100,7 @@ const TenantProfile = () => {
         <p><Check className="icon" /> Redes sociales: <span className="verification-status">Verificadas</span></p>
       </div>
     </div>
+    </section>
   );
 };
 

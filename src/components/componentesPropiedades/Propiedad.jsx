@@ -1,22 +1,14 @@
-
-import ReactDOM from "react-dom/client";
 import React  from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useHistory } from 'react-router-dom';
 
 
-const theme = createTheme();
 
 export function Propiedad({id,tituloPropiedad, nombreArrendador,descripcion}) {
-  const maxLength = 30;
   const history = useHistory(); // Hook para la navegación
 
   const openDetails = () => {
     history.push(`/propiedad/${id}`); // Navega a la ruta de detalles con el ID
   };
-
-
-
 
   return (
     <main className='propiedad' onClick={openDetails}>
@@ -32,9 +24,3 @@ export function Propiedad({id,tituloPropiedad, nombreArrendador,descripcion}) {
   )
 }
 
-const maxText = (text, maxLength) => {
-  if (text.length > maxLength) {
-    return text.substring(0, maxLength) + '...';
-  }
-  return text;
-};

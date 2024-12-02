@@ -84,28 +84,15 @@ function App() {
     <main className='homePage'>
 
       <BrowserRouter>
-
-
-      <Route path='/formulario'>
-          <FormularioPropiedades></FormularioPropiedades>
-        </Route>
+      
+        <Route path='/formulario'>  <FormularioPropiedades></FormularioPropiedades></Route>
  
         <Switch>
-        <Route path='/perfil'>
-        <OwnerProfile userData={ownerExampleData} />
-        </Route>
-       
-          <Route path='/login'>
-            <FormularioLogin></FormularioLogin>
-          </Route>
-          <Route path='/registro'>
-            <FormularioRegistro></FormularioRegistro>
-          </Route>
+        <Route path='/perfil'> <OwnerProfile userData={ownerExampleData} /> </Route>
+          <Route path='/login' component={FormularioLogin}/>
+          <Route path='/registro' component={FormularioRegistro} />
           <Route path='/propiedad/:id' component={PropiedadDetails} />
-          <Route path='/'>
-            <HomePage></HomePage>
-          </Route>
-
+          <Route path='/' component={HomePage}/>
         </Switch>
       </BrowserRouter>
 
