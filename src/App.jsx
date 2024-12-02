@@ -11,10 +11,13 @@ import { FormularioRegistro } from './components/ComponentesLogin/FormularioRegi
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { FormularioPropiedades } from './components/componentesFormulario/FormularioPropiedades.jsx'
 import { HomePage } from './components/componentesHome/HomePage.jsx';
+import { PropiedadDetails } from './components/componentesPropiedades/PropiedadDetails.jsx'
+import {propiedadesHechas } from './logic/constans.js'
 import './styles/App.css'
 import './styles/index.css'
 
 function App() {
+
   useEffect(() => {
     const sessionFlag = 'session_initialized';
 
@@ -78,17 +81,12 @@ function App() {
       socialMedia: true,
     },
   };
-
-//   return (
-//     <main className="homePage">
-//       {/* Componente OwnerProfile */}
-
-//       <OwnerProfile userData={ownerExampleData} />
   return (
 
     <main className='homePage'>
 
       <BrowserRouter>
+
 
       <Route path='/formulario'>
           <FormularioPropiedades></FormularioPropiedades>
@@ -102,16 +100,16 @@ function App() {
           <Route path='/registro'>
             <FormularioRegistro></FormularioRegistro>
           </Route>
+          <Route path='/propiedad/:id' component={PropiedadDetails} />
           <Route path='/'>
             <HomePage></HomePage>
           </Route>
 
         </Switch>
-
       </BrowserRouter>
 
     </main>
   );
 }
 
-export default App;
+export default App
