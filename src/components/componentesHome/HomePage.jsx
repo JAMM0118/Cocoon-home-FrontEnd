@@ -17,6 +17,7 @@ export function HomePage(){
   //   console.log(getArrendadores);
   //   // setArrendadores([...getArrendadores]);
   // };
+  const [arrendadores, setArrendadores] = useState([]);
  
 
   useEffect(() => setPropiedades([...propiedadesHechas]), []);

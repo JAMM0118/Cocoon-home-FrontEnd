@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import { FormularioPropiedades } from './componentesFormulario/FormularioPropiedades.jsx';
+import React, { useEffect, useState } from 'react';
 
-function openFormulario() {
-  console.log('openFormulario')
-  return (
-    <FormularioPropiedades></FormularioPropiedades>
 
-  )
-}
 
 
 export function Encabezado() {
+  const [token, setToken] = useState(null);
 
   const [openProfileOptions, setOpenProfileOptions] = useState(false);
   const [openMenuOptions, setOpenMenuOptions] = useState(false);
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    window.location.href = '/login'; // Redirigir a la página de login
+  };
   return (
     <header className='headerPrincipal'>
       <img className='logo' src="/images/CocoonIcon.png" alt="logo" />
@@ -47,23 +53,33 @@ export function Encabezado() {
           <section className="dropDownMenu">
             <div>
               <a href='/formulario' className='styled-link'> Agrega tu hogar</a>
-              <a href="" className='styled-link'>
-                Contactanos
-              </a>
-              <a href="" className='styled-link'>
-                Ajustar texto
-              </a>
+              
+              
+              <a href="" className='styled-link'> Contactanos</a>
+              <a href="" className='styled-link'>Ajustar texto</a>
             </div>
           </section>
         }
 
+
+        
+        
         {
 
           openProfileOptions &&
           <section className="dropDownProfile" >
             <div>
-                <a href="/login" className='styled-link'> Iniciar Sesion</a>
-                <a href="registro" className='styled-link'> Registrarse</a>
+            {token ? (
+                  <>
+                    <a href="/perfil" className='styled-link'>Perfil</a>
+                    <button onClick={handleLogout} className='styled-link'>Cerrar Sesión</button>
+                  </>
+                ) : (
+                  <>
+                    <a href="/login" className='styled-link'>Iniciar Sesión</a>
+                    <a href="/registro" className='styled-link'>Registrarse</a>
+                  </>
+                )}
             </div>
               
           </section>
