@@ -11,7 +11,7 @@ import {
   Building,
   MessageCircle 
 } from 'lucide-react';
-import './OwnerProfile.css';
+import '../../Styles/OwnerProfile.css';
 import { Encabezado } from '../Encabezado';
 
 const OwnerProfile = () => {

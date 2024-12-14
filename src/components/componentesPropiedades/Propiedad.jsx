@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-export function Propiedad({id,tituloPropiedad, nombreArrendador,descripcion}) {
+export function Propiedad({id,tituloPropiedad, nombreArrendador,descripcion, foto}) {
   const history = useHistory(); // Hook para la navegación
 
   const openDetails = () => {
@@ -13,7 +13,7 @@ export function Propiedad({id,tituloPropiedad, nombreArrendador,descripcion}) {
   return (
     <main className='propiedad' onClick={openDetails}>
       <section className="contenedorImagenes">
-        <img className='imagenes' src="/images/casas.jpg" alt="" />
+        <img className='imagenes' src={foto} alt="" />
       </section>
       <section className='textos' >
         <h1>{tituloPropiedad}</h1>

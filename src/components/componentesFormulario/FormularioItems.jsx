@@ -1,22 +1,68 @@
 import { renderPreview, amenidades, } from './ConstansFormulario.jsx';
 import {
     Home, AttachMoney, People, Hotel, Bathtub,
-    CameraAlt, Videocam,
+    CameraAlt, Videocam, Comment,
+    Rule,
+    Directions
 } from '@mui/icons-material';
 
 import {
     TextField, Button, Typography,
-    Checkbox, FormControlLabel, Grid
+    Checkbox, FormControlLabel, Grid, Select, MenuItem, FormControl, InputLabel
 } from '@mui/material';
 
 
 export function FormularioItems({ formulario,
-    
+
     handleInputChange, handleFileChange, handleAmenidadChange, agregarPropiedad }) {
     return (
         <form onSubmit={(e) => e.preventDefault()}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
+
+                    <FormControl fullWidth variant="outlined">
+                        <InputLabel id="select-label">Tipo de propiedad</InputLabel>
+                        <Select
+                            labelId="select-label"
+                            id="simple-select"
+                            name='tipoPropiedad'
+                            value={formulario.tipoPropiedad}
+                            onChange={handleInputChange}
+                            label="Tipo de propiedad"
+                        >
+                            <MenuItem value='Habitacion'>Habitacion</MenuItem>
+                            <MenuItem value='Apartamento'>Apartamento</MenuItem>
+                            <MenuItem value='Estudio'>Estudio</MenuItem>
+                            <MenuItem value='Casa'>Casa</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        label="Nombre de la propiedad"
+                        name="nombrePropiedad"
+                        value={formulario.nombrePropiedad}
+                        onChange={handleInputChange}
+                        InputProps={{
+                            startAdornment: <Home />
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        label="Descripcion"
+                        name="descripcion"
+                        value={formulario.descripcion}
+                        onChange={handleInputChange}
+                        InputProps={{
+                            startAdornment: <Comment />
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={6}>
                     <TextField
                         fullWidth
                         label="Dirección"
@@ -24,7 +70,20 @@ export function FormularioItems({ formulario,
                         value={formulario.direccion}
                         onChange={handleInputChange}
                         InputProps={{
-                            startAdornment: <Home />
+                            startAdornment: <Directions />
+                        }}
+                    />
+                </Grid>
+
+                <Grid item xs={6}>
+                    <TextField
+                        fullWidth
+                        label="Reglas"
+                        name="reglas"
+                        value={formulario.reglas}
+                        onChange={handleInputChange}
+                        InputProps={{
+                            startAdornment: <Rule />
                         }}
                     />
                 </Grid>
@@ -100,6 +159,7 @@ export function FormularioItems({ formulario,
                         ))}
                     </Grid>
                 </Grid>
+
                 <Grid item xs={3.5}>
                     <input
                         accept="image/*"

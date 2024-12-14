@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { Encabezado } from '../Encabezado.jsx';
 import React, { useState } from 'react';
-import './EncabezadoHome.css';
+import '../../Styles/EncabezadoHome.css';
 import { propiedadesHechas } from '../../logic/constans.js';
 import { Propiedad } from '../componentesPropiedades/Propiedad.jsx';
 

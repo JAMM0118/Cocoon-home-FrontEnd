@@ -6,13 +6,8 @@ import {
 import { Cancel } from '@mui/icons-material';
 import { FormularioItems } from './FormularioItems';
 import Swal from 'sweetalert2';
+import { agregarPropiedadBack } from '../../logic/constans';
 
-
-function dejloahu(
-
-){
-  
-}
 
 export function FormularioPropiedades() {
 
@@ -20,10 +15,14 @@ export function FormularioPropiedades() {
   const handleClose = () => setOpen(false);
 
   const [formulario, setFormulario] = useState({
-    id: '',
+    idArrendador: `${localStorage.getItem('idUsuario')}`,
+    nombrePropiedad: '',
     direccion: '',
+    descripcion: '',
+    reglas: '',
     precio: '',
     habitaciones: '',
+    tipoPropiedad: '',
     banos: '',
     huespedes: '',
     amenidades: [],
@@ -50,7 +49,7 @@ export function FormularioPropiedades() {
   };
 
   const calcularProgreso = () => {
-    const campos = ['direccion', 'precio', 'habitaciones', 'banos', 'huespedes'];
+    const campos = ['direccion', 'precio', 'habitaciones', 'banos', 'huespedes', 'descripcion', 'reglas', 'tipoPropiedad'];
     const camposLlenos = campos.filter(campo => formulario[campo] !== '').length;
     const progresoArchivos = (formulario.fotos.length > 0 || formulario.videos.length > 0) ? 1 : 0;
     const progresoAmenidades = formulario.amenidades.length > 0 ? 1 : 0;
@@ -60,10 +59,58 @@ export function FormularioPropiedades() {
   };
 
   const agregarPropiedad = () => {
-    if (formulario.direccion && formulario.precio && formulario.habitaciones && formulario.huespedes) {
+    if (formulario.direccion && formulario.precio && formulario.habitaciones && formulario.huespedes && formulario.descripcion
+      && formulario.reglas && formulario.tipoPropiedad && formulario.amenidades.length > 0 
+      && formulario.nombrePropiedad) {
+      const data = {
+        arrendador: parseInt(formulario.idArrendador),
+        cantidad_banos:  parseInt(formulario.banos) ,
+        cantidad_habitaciones: parseInt(formulario.habitaciones),
+        cantidad_huespedes: parseInt(formulario.huespedes),
+        descripcion: formulario.descripcion,
+        direccion: formulario.direccion,
+        estado: 'disponible',
+        fotos: formulario.fotos.length > 0 ? formulario.fotos[0] : null,
+        nombre: formulario.nombrePropiedad,
+        precio: parseInt(formulario.precio),
+        reglas: formulario.reglas,
+        servicios: formulario.amenidades.join(', '),
+        tipo_vivienda: formulario.tipoPropiedad,
+        videos: formulario.videos.length > 0 ? formulario.videos[0] : null 
+
+
+      };
+
+      const formData = new FormData();
+      for (const key in data) {
+        formData.append(key, data[key]);
+      }
+
+      Swal.fire({
+        title: 'Agregando Propiedad...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      });
+
+      console.log(formData);
+      if (agregarPropiedadBack(formData).then(([ok]) => {
+
+        if (ok) {
+          Swal.fire({
+            title: 'Propiedad Agregada Correctamente',
+            icon: 'success',
+            confirmButtonText: 'Cerrar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '/'
+            }
+          });
+        }
+      }));
       limpiarFormulario();
       handleClose();
-      console.log(formulario);
     } else {
       alert('Por favor, llena todos los campos obligatorios');
     }
@@ -71,9 +118,13 @@ export function FormularioPropiedades() {
 
   const limpiarFormulario = () => {
     setFormulario({
-      id: '',
+      idArrendador: '',
+      nombrePropiedad: '',
       direccion: '',
+      descripcion: '',
       precio: '',
+      reglas: '',
+      tipoPropiedad: '',
       habitaciones: '',
       banos: '',
       huespedes: '',
@@ -88,20 +139,32 @@ export function FormularioPropiedades() {
   }, [formulario]);
   return (
 
-    
+
     <main>
       {localStorage.getItem('token') === null && (
-    // Add any content you want to render when the token is null
-    Swal.fire({
-      title: 'No tienes permiso para acceder',
-      icon: 'error',
-      confirmButtonText: 'Cerrar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = '/login'
-      }
-    })
-  )}
+        // Add any content you want to render when the token is null
+        Swal.fire({
+          title: 'No tienes permiso para acceder',
+          icon: 'error',
+          confirmButtonText: 'Cerrar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '/login'
+          }
+        })
+      )}
+      {localStorage.getItem('tipoUsuario') == "arrendatario" && (
+        // Add any content you want to render when the token is null
+        Swal.fire({
+          title: 'No tienes permiso para acceder',
+          icon: 'error',
+          confirmButtonText: 'Cerrar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '/'
+          }
+        })
+      )}
       <Modal open={open} onClose={handleClose} style={{ padding: '16px', maxWidth: '600px', margin: '0 auto' }}>
         <Card style={{ marginBottom: '16px', maxWidth: '100vh', maxHeight: '80vh', overflowY: 'auto' }}>
           <CardContent>

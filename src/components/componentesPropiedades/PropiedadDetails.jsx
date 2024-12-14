@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import { propiedadesHechas } from '../../logic/constans.js'
+import { propiedadesHechas , cargarArrendadores , cargarPropiedades } from '../../logic/constans.js'
 import "../../Styles/PropiedadDetails.css";
 import CarouselReviews from "../CarouselReviews"; // Ruta al componente
 import "../../styles/CarouselReviews.css";
@@ -16,6 +16,7 @@ import CropFreeIcon from '@mui/icons-material/CropFree';
 import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import { Modal, Box, Button, TextField } from '@mui/material';
 import { Encabezado } from "../Encabezado.jsx";
+import { Light, Water, WaterfallChartTwoTone } from "@mui/icons-material";
 
 
 
@@ -29,11 +30,21 @@ export function PropiedadDetails({ match }) {
   const [startDate, setStartDate] = useState(""); // Fecha de inicio
   const [endDate, setEndDate] = useState(""); // Fecha de fin
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [arrendadores, setArrendadores] = useState([]);
 
   useEffect(() => {
     // Busca la propiedad por ID en el array de propiedades
-    const propiedadSeleccionada = propiedadesHechas.find((p) => p.id === parseInt(id));
-    setPropiedad(propiedadSeleccionada);
+    // const propiedadSeleccionada = propiedadesHechas.find((p) => p.id === parseInt(id));
+    // setPropiedad(propiedadSeleccionada);
+    cargarArrendadores().then((arrendadores) => {
+      setArrendadores(arrendadores);
+    });
+    cargarPropiedades().then((p) => {
+      const propiedadSelected = p.find((propiedades) => propiedades.id === parseInt(id));
+      setPropiedad(propiedadSelected);
+    });
+
+    
   }, [id]);
 
   const handleOpen = () => setOpen(true);
@@ -41,11 +52,12 @@ export function PropiedadDetails({ match }) {
 
   const handleConfirm = () => {
     setIsConfirmed(true);
-    handleClose(); // Cierra el modal
+    handleClose(); 
   };
 
   if (!propiedad) {
-    return <p>Cargando detalles...</p>;
+    return <div>Cargando propiedad...</div>;
+  
   }
 
 
@@ -58,7 +70,7 @@ export function PropiedadDetails({ match }) {
       <div className="layout-details">
       <aside>
         <div className="image-container">
-          <img src="../public/images/casas.jpg" alt="Propiedad" />
+          <img src={propiedad.fotos} alt="Propiedad" />
         </div>
       </aside>
 
@@ -109,7 +121,9 @@ export function PropiedadDetails({ match }) {
               <h3>¡Reserva confirmada!</h3>
               <p>El arrendador ha sido notificado sobre tu interés en la propiedad.</p>
               <p>Información de contacto del arrendador:</p>
-              <p>Nombre: {propiedad.arrendador}</p>
+              <p>Nombre: {arrendadores ?              
+              arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name
+            : "Cargando..."}</p>
               <p>Teléfono: {propiedad.telefono}</p>
             </div>
           )}
@@ -117,15 +131,17 @@ export function PropiedadDetails({ match }) {
           <h3 className="texto-subtitulo">Propietario</h3>
           <Stack direction="row" >
             <Avatar sx={{ width: 70, height: 70 }} alt="Remy Sharp" src="../public/images/revelo.png" />
-            <p className="name-propietario" >{propiedad.arrendador}</p>
+            <p className="name-propietario" >{arrendadores ?              
+              arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name
+            : "Cargando..."}</p>
           </Stack>
         </main>
       </div>
 
       <div className="additional-info">
         <div className="box-servicios">
-          <button className="button-servicios"> <WifiIcon fontSize="large" color="primary" />Conexion Wifi</button>
-          <button className="button-servicios"> <CropFreeIcon fontSize="large" color="primary" />Metros Cuadrados</button>
+          <button className="button-servicios"> <Light fontSize="large" color="primary" />Conexion Wifi</button>
+          <button className="button-servicios"> <Water fontSize="large" color="primary" />Metros Cuadrados</button>
           <button className="button-servicios"> <DirectionsCarIcon fontSize="large" color="primary" />Estacionamiento</button>
           <button className="button-servicios"> <ShowerIcon fontSize="large" color="primary" />Baño</button>
           <button className="button-servicios"> <ElectricalServicesIcon fontSize="large" color="primary" />Servicios publicos</button>
@@ -136,7 +152,7 @@ export function PropiedadDetails({ match }) {
             <h2>Ubicación</h2>
 
 
-            <p>Cra 9A #85-76, Barrio Príncipe, Tuluá, Valle del Cauca, Colombia</p>
+            <p>{propiedad.direccion}</p>
           </div>
           <div className="title-wrapper">
             <div className="title-divider"></div>
@@ -150,19 +166,17 @@ export function PropiedadDetails({ match }) {
           </div>
           <div className="rules-section">
             <ul className="rules-list">
-              <li>No se permiten mascotas.</li>
-              <li>No hacer ruido después de las 10 PM.</li>
-              <li>Pagar el alquiler a tiempo.</li>
-              <li>Mantener el área limpia.</li>
-              <li>No fumar dentro de la propiedad.</li>
-              <li>Reportar daños inmediatamente.</li>
-            </ul>
+              
+              {propiedad.reglas.split(',').map((regla, index) => (
+                <li key={index}>{regla}</li>
+              ))}
+              </ul>
           </div>
           <div className="title-wrapper">
             <div className="title-divider"></div>
             <h2>Tipo de vivienda</h2>
           </div>
-          <p>Apartaestudio</p>
+          <p>{propiedad.tipo_vivienda}</p>
           <div className="title-wrapper">
             <div className="title-divider"></div>
             <h2>Reservas</h2>
@@ -177,7 +191,9 @@ export function PropiedadDetails({ match }) {
           <div className="landlord-card">
             <img src="../public/images/revelo.png" alt="Foto del arrendador" className="landlord-image" />
             <div className="landlord-info">
-              <h3 className="landlord-name">{propiedad.arrendador}</h3>
+              <h3 className="landlord-name">{arrendadores ?              
+              arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name
+            : "Cargando..."}</h3>
               <p className="landlord-rating">
                 <span>Calificación:</span>
                 <Rating name="read-only" value={4.5} readOnly precision={0.5} size="small" />
