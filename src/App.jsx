@@ -88,7 +88,13 @@ function App() {
         <Route path='/formulario'>  <FormularioPropiedades></FormularioPropiedades></Route>
  
         <Switch>
-        <Route path='/perfil'> <OwnerProfile userData={ownerExampleData} /> </Route>
+        <Route path='/perfil'> 
+        {localStorage.getItem('tipoUsuario') == 'arrendador' ? 
+        <OwnerProfile userData={ownerExampleData} /> :<TenantProfile userData={tenantExampleData} />
+
+        }
+        
+        </Route>
           <Route path='/login' component={FormularioLogin}/>
           <Route path='/registro' component={FormularioRegistro} />
           <Route path='/propiedad/:id' component={PropiedadDetails} />

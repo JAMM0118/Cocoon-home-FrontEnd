@@ -2,6 +2,7 @@ import { useState } from "react"
 import logo from "/images/CocoonIcon.png"
 import "../../styles/FormularioRegistro.css"
 import { registerUser } from "../../logic/constans";
+import Swal from 'sweetalert2';
 
 
 import { Button } from '@mui/material';
@@ -16,9 +17,10 @@ export function FormularioRegistro() {
     const [telefono, setTelefono] = useState("");
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
-    const { universidad, setUniversidad } = useState("");
-    const [constanciaEstudiante, setConstanciaEstudiante] = useState([]);
+    const [universidad, setUniversidad ] = useState("");
+    const [constanciaEstudiante, setConstanciaEstudiante] = useState(null);
     const [ocupacion, setOcupacion] = useState("");
+    const [imagenPerfil, setImagenPerfil] = useState(null);
     const [error, setError] = useState(false);
 
     const handleSubmit = (evento) => {
@@ -27,28 +29,36 @@ export function FormularioRegistro() {
         //Validacion de que los campos han sido llenados
         if (usuario == "" || password == "" || correo == ""
             || telefono == "" || nombre == "" || apellido == ""
-            || ocupacion == "" || rol == "" || esEstudiante == ""
+            || ocupacion == "" || rol == "" || esEstudiante == "" 
             || (esEstudiante == 'true' && !universidad) || (esEstudiante == 'true' && !constanciaEstudiante)
         ) {
             setError(true)
             return
         }
         setError(false)
-        
+        console.log(imagenPerfil)
+        console.log(constanciaEstudiante) 
+
         const data = {
             "username": usuario,
             "password": password,
             "first_name": nombre,
             "last_name": apellido,
             "email": correo,
+            "profile_picture": imagenPerfil ? imagenPerfil : null,
             "telefono": telefono,
-            "is_arrendador": (rol == "Arrendador") ? true : false,
+            "is_arrendador": (rol == "arrendador") ? true : false,
             "ocupacion": ocupacion,
             "is_estudiante": (esEstudiante == "true") ? true : false,
-            "constancia_universidad": (esEstudiante == "true") ? "constaci" : "None",
+            "constancia_universidad": (esEstudiante == "true") ? constanciaEstudiante : null,
             "universidad": (esEstudiante == "true") ? universidad : "None"
         }
 
+        console.log(data)
+        const formData = new FormData();
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
 
         Swal.fire({
             title: 'Registrando usuario...',
@@ -57,20 +67,20 @@ export function FormularioRegistro() {
                 Swal.showLoading()
             }
         });
-        if(registerUser(data).then(([data, ok]) => {
+        if (registerUser(formData).then(([ok]) => {
             if (ok) {
                 Swal.fire({
                     title: 'Usuario registrado correctamente',
                     icon: 'success',
                     confirmButtonText: 'Cerrar'
-                  }).then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = '/login'
-                      }
-                  });
+                    }
+                });
             }
         }));
-         
+
 
     }
 
@@ -121,7 +131,7 @@ export function FormularioRegistro() {
                         placeholder="Apellido"//Muestra dentro de la caja de texto "Contraseña"
                         aria-label="Apellido"//->Ofrece accesibilidad para aquellas personas que no tienen vision y usan programas de lectura
                     />
-                    
+
                     <input
                         type="email"
                         value={correo}
@@ -145,16 +155,36 @@ export function FormularioRegistro() {
                         placeholder="Ocupacion"//Muestra dentro de la caja de texto "Contraseña"
                         aria-label="Ocupacion"//->Ofrece accesibilidad para aquellas personas que no tienen vision y usan programas de lectura
                     />
+
+                    <input
+                        type="file"
+                        accept=".png, .jpg, .jpeg"
+                        style={{ display: 'none' }}
+                        id="profile-button"
+                        onChange={(evento) => setImagenPerfil(evento.target.files[0])}
+                    />
+                    <label htmlFor="profile-button">
+                        <Button variant="outlined" component="span" color="info">
+                            Subir foto de perfil
+                        </Button>
+                    </label>
+
+                    {imagenPerfil && <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}>
+
+                        {imagenPerfil.name}
+
+                    </div>}
                     <select value={rol} onChange={evento => setRol(evento.target.value)}>
                         <option value="" disabled>Tipo de usuario</option>
-                        <option value="Arrendador"> Arrendador</option>
-                        <option value="Arrendatario">Arrendatario</option>
+                        <option value="arrendador"> Arrendador</option>
+                        <option value="arrendatario">Arrendatario</option>
                     </select>
                     <select value={esEstudiante} onChange={evento => setEsEstudiante(evento.target.value)}>
                         <option value="" disabled>¿Eres estudiante?</option>
                         <option value="true"> Si</option>
                         <option value="false">No</option>
                     </select>
+
 
 
                     {

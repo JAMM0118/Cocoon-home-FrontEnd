@@ -10,7 +10,7 @@ import {
   Check, 
   Key 
 } from 'lucide-react';
-import './TenantProfile.css';
+import '../../Styles/TenantProfile.css';
 import { Encabezado } from '../Encabezado';
 
 const TenantProfile = () => {

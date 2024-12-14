@@ -1,44 +1,76 @@
 import { useState, useEffect } from 'react'
-import {cargarArrendadores, cargarPropiedades, propiedadesHechas } from '../../logic/constans.js'
+import { cargarArrendadores, cargarPropiedades, propiedadesHechas } from '../../logic/constans.js'
 import { EncabezadoHome } from './EncabezadoHome.jsx'
 import { Propiedad } from '../componentesPropiedades/Propiedad.jsx'
 import { MensajesHome } from './MensajesHome.jsx'
 
 
-let name =  'Perez';
 
-export function HomePage(){
-    
-  const [propiedades, setPropiedades] = useState([]);
-  const [arrendadores, setArrendadores] = useState([]);
- 
+export function HomePage() {
 
-  useEffect(() => setPropiedades([...propiedadesHechas]), []);
-  
-  
-    return(
+  const [propiedades, setPropiedades] = useState(null);
+  const [arrendadores, setArrendadores] = useState(null);
+  const [token, setToken] = useState(null);
+
+  // Cargar propiedades y arrendadores
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+
+    cargarArrendadores().then((arrendadores) => {
+      setArrendadores(arrendadores);
+    });
+    cargarPropiedades().then((propiedades) => {
+      setPropiedades(propiedades);
+    });
+
+
+
+  }, []);
+
+  console.log(arrendadores);
+  console.log(propiedades);
+
+
+
+  return (
     <main>
-    
-    <EncabezadoHome></EncabezadoHome>
 
-    <MensajesHome></MensajesHome>
+      <EncabezadoHome></EncabezadoHome>
+
+      <MensajesHome></MensajesHome>
       <h1 className='tituloHome'>Propiedades de interes</h1>
-    
+
       <section className='grid'>
-        {propiedades.map((propiedad) => (
-            <Propiedad
+
+
+        {token ? (propiedades ? (propiedades.map((propiedad) => (
+          <Propiedad
             key={propiedad.id}
             id={propiedad.id}
             tituloPropiedad={propiedad.tipo_vivienda}
-            nombreArrendador={name}
+            nombreArrendador={arrendadores ?              
+              arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name
+            : "Cargando..."}
+            foto={propiedad.fotos}
             descripcion={propiedad.descripcion}>
-              
 
-            </Propiedad>
-        ))}
+
+          </Propiedad>))) : (<p>Cargando propiedades...</p>
+        ))
+
+          : (<p>Por favor inicia sesión para ver las propiedades</p>)
+
+
+
+        }
+
+
       </section>
-      
+
     </main>
 
-    )
+  )
 }
