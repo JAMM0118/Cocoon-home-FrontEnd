@@ -124,7 +124,9 @@ export function PropiedadDetails({ match }) {
               <p>Nombre: {arrendadores ?              
               arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name
             : "Cargando..."}</p>
-              <p>Teléfono: {propiedad.telefono}</p>
+              <p>Teléfono: {arrendadores ?              
+              arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).telefono
+            : "Cargando..."}</p>
             </div>
           )}
 
