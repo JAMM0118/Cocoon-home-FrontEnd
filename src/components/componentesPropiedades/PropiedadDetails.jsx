@@ -179,11 +179,6 @@ export function PropiedadDetails({ match }) {
           <p>{propiedad.tipo_vivienda}</p>
           <div className="title-wrapper">
             <div className="title-divider"></div>
-            <h2>Reservas</h2>
-          </div>
-          <p>Calendario de reservas</p>
-          <div className="title-wrapper">
-            <div className="title-divider"></div>
             <h2>Reseñas</h2>
           </div>
           <CarouselReviews propiedadId={propiedad.id}/>
@@ -210,8 +205,6 @@ export function PropiedadDetails({ match }) {
           </div>
 
         </div>
-        <h2>Mapa en google</h2>
-        <h2>Propiedades similares</h2>
 
       </div>
     </div>
