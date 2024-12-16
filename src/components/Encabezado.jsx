@@ -12,6 +12,8 @@ export function Encabezado() {
   const [textAdjustOptions, setTextAdjustOptions] = useState(false);
   const [textSize, setTextSize] = useState('16px');
 
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   const adjustTextSize = (size) => {
     setTextSize(size);
     document.documentElement.style.setProperty('--text-size', size); // Aplicar estilo global
@@ -73,7 +75,12 @@ export function Encabezado() {
               <a href='/formulario' className='styled-link'> Agrega tu hogar</a>
               
               
-              <a href="" className='styled-link'> Contactanos</a>
+              <button
+                className='styled-link'
+                onClick={() => setIsContactModalOpen(true)}
+              >
+                Contáctanos
+              </button>
               <div>
                 <button
                   onClick={() => setTextAdjustOptions((prev) => !prev)}
@@ -90,6 +97,29 @@ export function Encabezado() {
                 )}
                 </div>
             </div>
+            {isContactModalOpen && (
+          <div className="modal-overlay">
+            <div className="modal">
+              <h2>Contáctanos</h2>
+              <p><strong>Integrantes:</strong></p>
+              <ul>
+                <li>Nicolás Mauricio Rojas - 2259460</li>
+                <li>Víctor Manuel Hernandez - 2259520</li>
+                <li>Jhon Alejandro Martínez - 2259565</li>
+                <li>Juan Miguel Posso - 2259610</li>
+                <li>Esteban Revelo - 2067507</li>
+              </ul>
+              <p><strong>Correo electrónico:</strong> contacto@cooconhome.com</p>
+              <p><strong>Líneas de atención:</strong></p>
+              <ul>
+                <li>+57 300 123 4567</li>
+                <li>+57 310 765 4321</li>
+              </ul>
+              <p>Si tienes algún problema, no dudes en comunicarte con nuestras líneas de atención.</p>
+              <button onClick={() => setIsContactModalOpen(false)}>Cerrar</button>
+            </div>
+          </div>
+        )}
           </section>
         }
 
