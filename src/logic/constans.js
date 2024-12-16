@@ -2,8 +2,56 @@ import Swal from "sweetalert2";
 
 const urlPropiedades = 'https://backend-cocoon-project.onrender.com/api/propiedades/';
 const urlArrendadores = 'https://backend-cocoon-project.onrender.com/api/arrendadores/';
+const urlArrendatarios = 'https://backend-cocoon-project.onrender.com/api/arrendatarios/';
 const urlRegisterUser = 'https://backend-cocoon-project.onrender.com/auth/register';
 const urlLoginUser = 'https://backend-cocoon-project.onrender.com/auth/login';
+const urlReviewUser = 'https://backend-cocoon-project.onrender.com/api/resenas/';
+const urlReviews = 'https://backend-cocoon-project.onrender.com/api/resenas/';
+
+
+export const cargarResenas = async (propiedadId = null) => {
+  const url = propiedadId
+    ? `${urlReviews}?propiedad=${propiedadId}` // Si el backend permite filtrar por propiedad
+    : urlReviews;
+
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Token ${localStorage.getItem('token')}`
+    }
+  });
+
+  if (!res.ok) {
+    throw new Error('Error al cargar las reseñas');
+  }
+
+  const data = await res.json();
+  return data;
+};
+
+
+export const cargarArrendatarios = async () => {
+  const array = [];
+  // const res = await fetch('data.json');
+  const res = await fetch(urlArrendatarios, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Token ${localStorage.getItem('token')}`
+    }
+  });
+  const data = await res.json();
+
+  data.forEach(propiedad => {
+    array.push(propiedad);
+
+  });
+
+  return array;
+};
+
+
+
+
 export const cargarArrendadores = async () => {
   const array = [];
   // const res = await fetch('data.json');

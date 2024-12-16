@@ -31,7 +31,7 @@ export function EncabezadoHome() {
 
         <section className="textoEncabezado">
 
-          <h1 >Tu hogar temporal, tu espacio de crecimiento.</h1>
+          <h1 className='textoEncabezado-principal'>Tu hogar temporal, tu espacio de crecimiento.</h1>
           <TextField value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyPress} style={
               { width: '50%', border: '1px solid var(--black)', backgroundColor: 'var(--white)', borderRadius: '10px' }}

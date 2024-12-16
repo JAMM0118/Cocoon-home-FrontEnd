@@ -1,4 +1,5 @@
 import { renderPreview, amenidades, } from './ConstansFormulario.jsx';
+import '../../Styles/FormularioItems.css';
 import {
     Home, AttachMoney, People, Hotel, Bathtub,
     CameraAlt, Videocam, Comment,
@@ -16,6 +17,7 @@ export function FormularioItems({ formulario,
 
     handleInputChange, handleFileChange, handleAmenidadChange, agregarPropiedad }) {
     return (
+        <div className="formulario-items">
         <form onSubmit={(e) => e.preventDefault()}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -214,5 +216,6 @@ export function FormularioItems({ formulario,
                 </Grid>
             </Grid>
         </form>
+        </div>
     )
 }

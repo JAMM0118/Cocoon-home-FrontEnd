@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../../Styles/global.css";
 import {
   Modal, Button, Card, CardContent, Typography,
   LinearProgress
@@ -165,12 +166,13 @@ export function FormularioPropiedades() {
           }
         })
       )}
-      <Modal open={open} onClose={handleClose} style={{ padding: '16px', maxWidth: '600px', margin: '0 auto' }}>
-        <Card style={{ marginBottom: '16px', maxWidth: '100vh', maxHeight: '80vh', overflowY: 'auto' }}>
+      
+      <Modal open={open} onClose={handleClose} style={{ padding: '16px', maxWidth: '600px', margin: '0 auto',fontSize: 'var(--text-size)' }}>
+        <Card style={{ marginBottom: '16px', maxWidth: '100vh', maxHeight: '80vh', overflowY: 'auto', fontSize: 'var(--text-size)' }}>
           <CardContent>
-            <Typography variant="h5" gutterBottom> Agregar Propiedad
-              <Button href='/' style={{ float: 'right', borderRadius: '20px' }} variant='contained'><Cancel /></Button>
-            </Typography>
+            
+            <Button href='/' style={{ float: 'right', borderRadius: '20px' }} variant='contained'><Cancel /></Button>
+            <h1>Agregar Propiedad</h1>
             <LinearProgress variant="determinate" value={progreso} style={{ margin: '16px' }} />
             <FormularioItems
               formulario={formulario}
@@ -182,6 +184,7 @@ export function FormularioPropiedades() {
           </CardContent>
         </Card>
       </Modal>
+      
 
     </main>
   );
