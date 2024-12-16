@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../Styles/global.css';
 
 
 
@@ -8,6 +9,16 @@ export function Encabezado() {
 
   const [openProfileOptions, setOpenProfileOptions] = useState(false);
   const [openMenuOptions, setOpenMenuOptions] = useState(false);
+  const [textAdjustOptions, setTextAdjustOptions] = useState(false);
+  const [textSize, setTextSize] = useState('16px');
+
+  const adjustTextSize = (size) => {
+    setTextSize(size);
+    document.documentElement.style.setProperty('--text-size', size); // Aplicar estilo global
+    setTextAdjustOptions(false); // Cerrar el menú después de seleccionar
+  };
+
+
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -63,7 +74,21 @@ export function Encabezado() {
               
               
               <a href="" className='styled-link'> Contactanos</a>
-              <a href="" className='styled-link'>Ajustar texto</a>
+              <div>
+                <button
+                  onClick={() => setTextAdjustOptions((prev) => !prev)}
+                  className="styled-link"
+                >
+                  Ajustar texto
+                </button>
+                {textAdjustOptions && (
+                  <div className='text-adjust-buttons'>
+                    <button onClick={() => adjustTextSize('16px')}>Texto Pequeño</button>
+                    <button onClick={() => adjustTextSize('20px')}>Texto Mediano</button>
+                    <button onClick={() => adjustTextSize('30px')}>Texto Grande</button>
+                  </div>
+                )}
+                </div>
             </div>
           </section>
         }

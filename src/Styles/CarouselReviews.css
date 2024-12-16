@@ -32,7 +32,7 @@
   }
 
   .review-date {
-    font-size: 12px;
+    font-size: (12px);
     color: #888;
     margin-top: 5px;
     text-align: center;
@@ -53,7 +53,7 @@
 }
 
 .review-name {
-  font-size: 18px;
+  font-size: (18px);
   font-weight: bold;
   margin: 0;
   text-align: left;

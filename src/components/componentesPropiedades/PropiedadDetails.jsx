@@ -77,7 +77,7 @@ export function PropiedadDetails({ match }) {
       <div>
         <main>
           <h1 className="name-propiedad-details">{propiedad.nombre}</h1>
-          <Chip sx={{ bgcolor: "#9ed23b;", color: "#0f4d1a", blockSize: 20, fontSize: 12 }} label={propiedad.estado} />
+          <Chip sx={{ bgcolor: "#9ed23b;", color: "#0f4d1a",  fontSize: 12 }} label={propiedad.estado} />
           <h2 className="text-precio">${propiedad.precio} <p className="text-precio-mes">/mes</p></h2>
           <h3 className="texto-subtitulo">Calificación</h3>
           <Rating name="read-only" value={2.5} readOnly precision={0.5} size="large" />
@@ -186,7 +186,7 @@ export function PropiedadDetails({ match }) {
             <div className="title-divider"></div>
             <h2>Reseñas</h2>
           </div>
-          <CarouselReviews />
+          <CarouselReviews propiedadId={propiedad.id}/>
 
           <div className="landlord-card">
             <img src="../public/images/revelo.png" alt="Foto del arrendador" className="landlord-image" />
