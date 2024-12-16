@@ -12,9 +12,10 @@ import './styles/App.css'
 import './styles/index.css'
 
 function App() {
-
+  const nombres = localStorage.getItem('nombreUsuario') + ' ' + localStorage.getItem('apellidoUsuario');
+  
   const ownerExampleData = {
-    name: 'Juan Pérez',
+    name: nombres,
     profilePic: '/example-profile.jpg',
     bio: 'Arrendador con experiencia en propiedades urbanas.',
     email: 'juan.perez@example.com',
@@ -42,8 +43,9 @@ function App() {
   };
 
   // Datos de ejemplo para TenantProfile
+  console.log(nombres);
   const tenantExampleData = {
-    name: 'Ana García',
+    name: nombres,
     profilePic: '/example-tenant-profile.jpg',
     bio: 'Estudiante de ingeniería en busca de un apartamento cerca de la universidad.',
     email: 'ana.garcia@example.com',
@@ -72,6 +74,7 @@ function App() {
     if (!sessionStorage.getItem(sessionFlag)) {
       // Limpiar localStorage y establecer la bandera
       localStorage.clear();
+      
       sessionStorage.setItem(sessionFlag, 'true');
     }
   }, []);

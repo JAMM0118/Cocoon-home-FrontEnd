@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import { propiedadesHechas , cargarArrendadores , cargarPropiedades } from '../../logic/constans.js'
+import { propiedadesHechas , cargarArrendadores , cargarPropiedades, hacerReserva } from '../../logic/constans.js'
 import "../../Styles/PropiedadDetails.css";
 import CarouselReviews from "../CarouselReviews"; // Ruta al componente
 import "../../styles/CarouselReviews.css";
@@ -52,6 +52,15 @@ export function PropiedadDetails({ match }) {
 
   const handleConfirm = () => {
     setIsConfirmed(true);
+    const data ={
+      propiedad: propiedad.id,
+      fecha_inicio: startDate,
+      fecha_final: endDate,
+      arrendatario: propiedad.arrendador,
+
+    }
+    console.log(data);
+    hacerReserva(data);
     handleClose(); 
   };
 
@@ -186,7 +195,7 @@ export function PropiedadDetails({ match }) {
           <CarouselReviews propiedadId={propiedad.id}/>
 
           <div className="landlord-card">
-            <img src="../public/images/revelo.png" alt="Foto del arrendador" className="landlord-image" />
+            <img src="/image.png" alt="Foto del arrendador" className="landlord-image" />
             <div className="landlord-info">
               <h3 className="landlord-name">{arrendadores ?              
               arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name

@@ -7,6 +7,7 @@ const urlRegisterUser = 'https://backend-cocoon-project.onrender.com/auth/regist
 const urlLoginUser = 'https://backend-cocoon-project.onrender.com/auth/login';
 const urlReviewUser = 'https://backend-cocoon-project.onrender.com/api/resenas/';
 const urlReviews = 'https://backend-cocoon-project.onrender.com/api/resenas/';
+const urlReservas = 'https://backend-cocoon-project.onrender.com/api/reservas/';
 
 
 export const cargarResenas = async (propiedadId = null) => {
@@ -123,9 +124,37 @@ export const loginUser = async (user) => {
 
   localStorage.setItem('tipoUsuario', data.tipo);
   localStorage.setItem('idUsuario', data.datos.id);
+  localStorage.setItem('nombreUsuario', data.datos.first_name);
+  localStorage.setItem('apellidoUsuario', data.datos.last_name);
   localStorage.setItem('token', data.token);
 
   return [data,true];
+}
+
+
+
+export const hacerReserva = async (reserva) => {
+  const respose = await fetch(urlReservas, {
+    method: 'POST',  
+    headers: {
+      'Authorization': `Token ${localStorage.getItem('token')}`
+    },
+    body: json.stringify(reserva),
+  }).then(response => response.json())
+  .then(data => console.log('Éxito:', data))
+  .catch(error => Swal.fire({
+    title: 'Error al hacer la reserva',
+    icon: 'error',
+    confirmButtonText: 'Cerrar'
+
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = '/'
+    }}) );
+ ;
+
+  
+  return [true];
 }
 
 

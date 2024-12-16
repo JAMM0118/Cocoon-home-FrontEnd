@@ -89,7 +89,7 @@ const OwnerProfile = () => {
           className="profile-pic" 
         />
         <div className="profile-header-info">
-          <h2 className="profile-name">Juan Pérez</h2>
+          <h2 className="profile-name">{localStorage.getItem('nombreUsuario') + ' ' + localStorage.getItem('apellidoUsuario')}</h2>
           <p className="bio">Propietario con 5 años de experiencia en arrendamiento en el centro de la ciudad.</p>
         </div>
       </div>
