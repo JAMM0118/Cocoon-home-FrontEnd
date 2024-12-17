@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { propiedadesHechas , cargarArrendadores , cargarPropiedades, hacerReserva } from '../../logic/constans.js'
 import "../../Styles/PropiedadDetails.css";
 import CarouselReviews from "../CarouselReviews"; // Ruta al componente
-import "../../styles/CarouselReviews.css";
+import "../../Styles/CarouselReviews.css";
 import ReviewComment from "../ReviewComment";
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
@@ -213,6 +213,9 @@ export function PropiedadDetails({ match }) {
             <p>Me gusta viajar y conocer nuevas culturas. Soy una persona amigable y me gusta conocer gente nueva.</p>
             <p>Si tienes alguna pregunta sobre la propiedad, no dudes en contactarme.</p>
             <button className="button-contact">Contactar</button>
+          </div>
+          <div>
+            <h2>Mapa Dinamico</h2>
           </div>
 
         </div>

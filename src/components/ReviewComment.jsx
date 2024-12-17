@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/ReviewComment.css";
+import "../Styles/ReviewComment.css";
 
 const ReviewComment = ({ text, maxVisibleChars = 100 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
