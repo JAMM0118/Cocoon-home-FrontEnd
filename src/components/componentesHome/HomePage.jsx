@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { cargarArrendadores, cargarPropiedades, propiedadesHechas } from '../../logic/constans.js'
+import { cargarArrendadores, cargarPropiedades, propiedadesHechas, cargarArrendatarios } from '../../logic/constans.js'
 import { EncabezadoHome } from './EncabezadoHome.jsx'
 import { Propiedad } from '../componentesPropiedades/Propiedad.jsx'
 import { MensajesHome } from './MensajesHome.jsx'
@@ -10,6 +10,7 @@ export function HomePage() {
 
   const [propiedades, setPropiedades] = useState(null);
   const [arrendadores, setArrendadores] = useState(null);
+  const [arrendatarios, setArrendatarios] = useState(null);
   const [token, setToken] = useState(null);
 
   // Cargar propiedades y arrendadores
@@ -25,6 +26,9 @@ export function HomePage() {
     cargarPropiedades().then((propiedades) => {
       setPropiedades(propiedades);
     });
+    cargarArrendatarios().then((arrendatarios) => {
+      setArrendatarios(arrendatarios);
+    });
 
 
 
@@ -32,6 +36,7 @@ export function HomePage() {
 
   console.log(arrendadores);
   console.log(propiedades);
+  console.log(arrendatarios);
 
 
 

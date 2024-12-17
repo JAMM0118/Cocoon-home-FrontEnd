@@ -98,21 +98,22 @@ export const cargarArrendadores = async () => {
 
 export const registerUser = async (user) => {
   const respose = await fetch(urlRegisterUser, {
-    method: 'POST',  
-    
+    method: 'POST',
+
     body: user,
   }).then(response => response.json())
-  .then(data => console.log('Éxito:', data))
-  .catch(error => 
-    Swal.fire({
-      title: 'Error al registrar el usuario',
-      icon: 'error',
-      confirmButtonText: 'Cerrar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = '/login'
-      }})
-  );
+    .then(data => console.log('Éxito:', data))
+    .catch(error =>
+      Swal.fire({
+        title: 'Error al registrar el usuario',
+        icon: 'error',
+        confirmButtonText: 'Cerrar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/login'
+        }
+      })
+    );
 
   return [true];
 }
@@ -120,7 +121,7 @@ export const registerUser = async (user) => {
 export const loginUser = async (user) => {
 
   const respose = await fetch(urlLoginUser, {
-    method: 'POST',  
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -136,9 +137,10 @@ export const loginUser = async (user) => {
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.href = '/login'
-      }});
+      }
+    });
     throw new Error('Error al iniciar sesion');
-    
+
   }
 
   const data = await respose.json();
@@ -150,34 +152,37 @@ export const loginUser = async (user) => {
   localStorage.setItem('idUsuario', data.datos.id);
   localStorage.setItem('nombreUsuario', data.datos.first_name);
   localStorage.setItem('apellidoUsuario', data.datos.last_name);
+  localStorage.setItem('emailUsuario', data.datos.email);
   localStorage.setItem('token', data.token);
 
-  return [data,true];
+  return [data, true];
 }
 
 
 
 export const hacerReserva = async (reserva) => {
   const respose = await fetch(urlReservas, {
-    method: 'POST',  
+    method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       'Authorization': `Token ${localStorage.getItem('token')}`
     },
-    body: json.stringify(reserva),
+    body: JSON.stringify(reserva),
   }).then(response => response.json())
-  .then(data => console.log('Éxito:', data))
-  .catch(error => Swal.fire({
-    title: 'Error al hacer la reserva',
-    icon: 'error',
-    confirmButtonText: 'Cerrar'
+    .then(data => console.log('Éxito:', data))
+    .catch(error => Swal.fire({
+      title: 'Error al hacer la reserva',
+      icon: 'error',
+      confirmButtonText: 'Cerrar'
 
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = '/'
-    }}) );
- ;
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/'
+      }
+    }));
+  ;
 
-  
+
   return [true];
 }
 
@@ -201,32 +206,33 @@ export const cargarPropiedades = async () => {
 
   return array;
 
-} 
+}
 
 export const agregarPropiedadBack = async (formData) => {
 
 
   const respose = await fetch(urlPropiedades, {
-    method: 'POST',  
+    method: 'POST',
     headers: {
       'Authorization': `Token ${localStorage.getItem('token')}`
     },
     body: formData,
   }).then(response => response.json())
-  .then(data => console.log('Éxito:', data))
-  .catch(error => Swal.fire({
-    title: 'Error al agregar la propiedad',
-    icon: 'error',
-    confirmButtonText: 'Cerrar'
+    .then(data => console.log('Éxito:', data))
+    .catch(error => Swal.fire({
+      title: 'Error al agregar la propiedad',
+      icon: 'error',
+      confirmButtonText: 'Cerrar'
 
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = '/'
-    }}) );
- ;
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/'
+      }
+    }));
+  ;
 
-  
-  
+
+
   return [true];
 }
 

@@ -18,8 +18,12 @@ import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import { Modal, Box, Button, TextField } from '@mui/material';
 import { Encabezado } from "../Encabezado.jsx";
 import { Light, Water, WaterfallChartTwoTone } from "@mui/icons-material";
+
 //una linea
 import { getCoordinates } from '../getCordenadas.jsx';
+=======
+import Swal from "sweetalert2";
+
 
 
 
@@ -58,6 +62,7 @@ export function PropiedadDetails({ match }) {
     
   }, [id]);
 
+
   useEffect(() => {
     // Obtener coordenadas si la dirección está disponible
     if (propiedad && propiedad.direccion) {
@@ -74,6 +79,21 @@ export function PropiedadDetails({ match }) {
 
   // Funciones para abrir y cerrar el modal de las reservas
   const handleOpen = () => setOpen(true);
+=======
+  const handleOpen = () => {
+    if (localStorage.getItem('tipoUsuario') == 'arrendador') {
+      Swal.fire({
+
+        title: 'No puedes reservar una propiedad',
+        text: 'Solo los arrendatarios pueden reservar propiedades',
+        icon: 'error',
+        confirmButtonText: 'Cerrar'
+      });
+      return;
+    }
+    
+    setOpen(true)};
+
   const handleClose = () => setOpen(false);
 
   const handleConfirm = () => {
@@ -82,7 +102,7 @@ export function PropiedadDetails({ match }) {
       propiedad: propiedad.id,
       fecha_inicio: startDate,
       fecha_final: endDate,
-      arrendatario: propiedad.arrendador,
+      arrendatario: parseInt(localStorage.getItem('idUsuario')),
 
     }
     console.log(data);
@@ -139,6 +159,8 @@ export function PropiedadDetails({ match }) {
           <button className="button-reserva" onClick={handleOpen}>Reservar</button>
 
           <Modal open={open} onClose={handleClose}>
+
+
             <Box sx={modalStyle}>
               <h2>Reservar propiedad</h2>
               <TextField
