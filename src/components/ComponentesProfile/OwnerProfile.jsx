@@ -14,10 +14,16 @@ import {
 import '../../Styles/OwnerProfile.css';
 import { Encabezado } from '../Encabezado';
 
-const OwnerProfile = () => {
+const OwnerProfile = (userData) => {
   const [visibleProperties, setVisibleProperties] = useState(1);
   const [visibleComments, setVisibleComments] = useState(2);
-
+  console.log(userData);
+  
+  //tipo de datos
+  console.log(typeof(userData));
+  //ver las propiedades del objeto
+  console.log(Object.keys(userData));
+  console.log(userData.userData.name);
   // Mock data for properties with reservation status
   const properties = [
     {
@@ -89,7 +95,7 @@ const OwnerProfile = () => {
           className="profile-pic" 
         />
         <div className="profile-header-info">
-          <h2 className="profile-name">{localStorage.getItem('nombreUsuario') + ' ' + localStorage.getItem('apellidoUsuario')}</h2>
+          <h2 className="profile-name">{userData.userData.name}</h2>
           <p className="bio">Propietario con 5 años de experiencia en arrendamiento en el centro de la ciudad.</p>
         </div>
       </div>
@@ -97,7 +103,7 @@ const OwnerProfile = () => {
       <div className="contact-info">
         <h3 className="section-title">Información de Contacto</h3>
         <p><Phone className="icon" /> Teléfono: +57 123 456 7890</p>
-        <p><Mail className="icon" /> Correo electrónico: ejemplo@correo.com</p>
+        <p><Mail className="icon" /> Correo electrónico: {userData.userData.email}</p>
       </div>
       
       <div className="properties">

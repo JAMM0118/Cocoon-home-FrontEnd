@@ -13,7 +13,7 @@ import {
 import '../../Styles/TenantProfile.css';
 import { Encabezado } from '../Encabezado';
 
-const TenantProfile = (datos) => {
+const TenantProfile = (userData) => {
   const [visibleComments, setVisibleComments] = useState(2);
 
   // Mock data for comments
@@ -53,7 +53,7 @@ const TenantProfile = (datos) => {
           className="profile-pic" 
         />
         <div className="profile-header-info">
-          <h2 className="profile-name">{localStorage.getItem('nombreUsuario') + ' ' + localStorage.getItem('apellidoUsuario')}</h2>
+          <h2 className="profile-name">{userData.userData.name}</h2>
           <p className="bio">Estudiante de ingeniería en busca de un apartamento cerca de la universidad.</p>
         </div>
       </div>
@@ -61,7 +61,7 @@ const TenantProfile = (datos) => {
       <div className="contact-info">
         <h3 className="section-title">Información de Contacto</h3>
         <p><Phone className="icon" /> Teléfono: +57 123 456 7890</p>
-        <p><Mail className="icon" /> Correo electrónico: ejemplo@correo.com</p>
+        <p><Mail className="icon" /> Correo electrónico: {userData.userData.email}</p>
       </div>
       
       <div className="rental-history">

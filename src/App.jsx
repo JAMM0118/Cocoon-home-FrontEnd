@@ -18,7 +18,7 @@ function App() {
     name: nombres,
     profilePic: '/example-profile.jpg',
     bio: 'Arrendador con experiencia en propiedades urbanas.',
-    email: 'juan.perez@example.com',
+    email: `${localStorage.getItem('emailUsuario')}`,
     phone: '+52 55 9876 5432',
     properties: [
       {
@@ -48,7 +48,7 @@ function App() {
     name: nombres,
     profilePic: '/example-tenant-profile.jpg',
     bio: 'Estudiante de ingeniería en busca de un apartamento cerca de la universidad.',
-    email: 'ana.garcia@example.com',
+    email: `${localStorage.getItem('emailUsuario')}`,
     phone: '+57 123 456 7890',
     rentalHistory: [
       {
