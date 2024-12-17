@@ -30,6 +30,30 @@ export const cargarResenas = async (propiedadId = null) => {
   return data;
 };
 
+export const hacerResena = async (resena) => {
+  const respose = await fetch(urlReviewUser, {
+    method: 'POST',  
+    headers: {
+      'Authorization': `Token ${localStorage.getItem('token')}`
+    },
+    body: json.stringify(resena),
+  }).then(response => response.json())
+  .then(data => console.log('Éxito:', data))
+  .catch(error => Swal.fire({
+    title: 'Error al hacer la reseña',
+    icon: 'error',
+    confirmButtonText: 'Cerrar'
+
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = '/propiedades'
+    }}) );
+  ;
+
+  return respose;
+};
+
+
 
 export const cargarArrendatarios = async () => {
   const array = [];
