@@ -1,6 +1,6 @@
 import { useState } from "react"
 import logo from "/images/CocoonIcon.png"
-import "../../styles/FormularioLogin.css"
+import "../../Styles/FormularioLogin.css"
 import { loginUser } from "../../logic/constans";
 import Swal from 'sweetalert2';
 
