@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { propiedadesHechas , cargarArrendadores , cargarPropiedades, hacerReserva } from '../../logic/constans.js'
 import "../../Styles/PropiedadDetails.css";
 import CarouselReviews from "../CarouselReviews"; // Ruta al componente
+import MapComponent from '../MapComponent.jsx';
 import "../../Styles/CarouselReviews.css";
 import ReviewComment from "../ReviewComment";
 import Chip from '@mui/material/Chip';
@@ -17,6 +18,8 @@ import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import { Modal, Box, Button, TextField } from '@mui/material';
 import { Encabezado } from "../Encabezado.jsx";
 import { Light, Water, WaterfallChartTwoTone } from "@mui/icons-material";
+//una linea
+import { getCoordinates } from '../getCordenadas.jsx';
 
 
 
@@ -31,6 +34,10 @@ export function PropiedadDetails({ match }) {
   const [endDate, setEndDate] = useState(""); // Fecha de fin
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [arrendadores, setArrendadores] = useState([]);
+  //un linea abajo
+  const [coordinates, setCoordinates] = useState(null);
+
+
 
   useEffect(() => {
     // Busca la propiedad por ID en el array de propiedades
@@ -46,6 +53,20 @@ export function PropiedadDetails({ match }) {
 
     
   }, [id]);
+
+  useEffect(() => {
+    // Obtener coordenadas si la dirección está disponible
+    if (propiedad && propiedad.direccion) {
+      const fetchCoordinates = async () => {
+        const coords = await getCoordinates(propiedad.direccion);
+        if (coords) {
+          setCoordinates([coords.lat, coords.lng]);
+        }
+      };
+
+      fetchCoordinates();
+    }
+  }, [propiedad]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -214,11 +235,18 @@ export function PropiedadDetails({ match }) {
             <p>Si tienes alguna pregunta sobre la propiedad, no dudes en contactarme.</p>
             <button className="button-contact">Contactar</button>
           </div>
-          <div>
-            <h2>Mapa Dinamico</h2>
-          </div>
+          
 
         </div>
+        <div>
+            <h2>En donde viviras</h2>
+            {/* En caso de que no funcione solo dejar  <MapComponent position={coordinates} /> */}
+            {coordinates ? (
+                <MapComponent position={coordinates} />
+              ) : (
+                <p>Obteniendo ubicación...</p>
+              )}
+          </div>
 
       </div>
     </div>
