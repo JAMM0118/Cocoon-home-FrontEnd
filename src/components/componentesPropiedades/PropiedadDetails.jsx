@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import { propiedadesHechas , cargarArrendadores , cargarPropiedades, hacerReserva } from '../../logic/constans.js'
+import { propiedadesHechas , cargarArrendadores , cargarPropiedades, hacerReserva, hacerResena } from '../../logic/constans.js'
 import "../../Styles/PropiedadDetails.css";
 import CarouselReviews from "../CarouselReviews"; // Ruta al componente
+import MapComponent from '../MapComponent.jsx';
 import "../../Styles/CarouselReviews.css";
 import ReviewComment from "../ReviewComment";
 import Chip from '@mui/material/Chip';
@@ -17,7 +18,12 @@ import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import { Modal, Box, Button, TextField } from '@mui/material';
 import { Encabezado } from "../Encabezado.jsx";
 import { Light, Water, WaterfallChartTwoTone } from "@mui/icons-material";
+
+//una linea
+import { getCoordinates } from '../getCordenadas.jsx';
+=======
 import Swal from "sweetalert2";
+
 
 
 
@@ -32,6 +38,14 @@ export function PropiedadDetails({ match }) {
   const [endDate, setEndDate] = useState(""); // Fecha de fin
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [arrendadores, setArrendadores] = useState([]);
+  const [coordinates, setCoordinates] = useState(null);
+  //un linea abajo
+  const [comentario, setComentario] = useState("");
+  const [calificacion, setCalificacion] = useState(0);
+  const [openResena, setOpenResena] = useState(false);
+  const [isConfirmedResena, setIsConfirmedResena] = useState(false);
+
+
 
   useEffect(() => {
     // Busca la propiedad por ID en el array de propiedades
@@ -48,6 +62,24 @@ export function PropiedadDetails({ match }) {
     
   }, [id]);
 
+
+  useEffect(() => {
+    // Obtener coordenadas si la dirección está disponible
+    if (propiedad && propiedad.direccion) {
+      const fetchCoordinates = async () => {
+        const coords = await getCoordinates(propiedad.direccion);
+        if (coords) {
+          setCoordinates([coords.lat, coords.lng]);
+        }
+      };
+
+      fetchCoordinates();
+    }
+  }, [propiedad]);
+
+  // Funciones para abrir y cerrar el modal de las reservas
+  const handleOpen = () => setOpen(true);
+=======
   const handleOpen = () => {
     if (localStorage.getItem('tipoUsuario') == 'arrendador') {
       Swal.fire({
@@ -61,6 +93,7 @@ export function PropiedadDetails({ match }) {
     }
     
     setOpen(true)};
+
   const handleClose = () => setOpen(false);
 
   const handleConfirm = () => {
@@ -76,6 +109,25 @@ export function PropiedadDetails({ match }) {
     hacerReserva(data);
     handleClose(); 
   };
+
+  //funciones para abrir y cerrar el modal para hacer reseña
+  const handleOpenResena = () => setOpenResena(true);
+  const handleCloseResena = () => setOpenResena(false);
+  const handleConfirmResena = () => {
+    setIsConfirmedResena(true);
+    /* const data ={
+      propiedad: propiedad.id,
+      comentario: comentario,
+      calificacion: calificacion,
+      arrendatario: propiedad.arrendador,
+    }
+    console.log(data);
+    hacerResena(data); */
+    handleCloseResena();
+  };
+  
+  
+
 
   if (!propiedad) {
     return <div>Cargando propiedad...</div>;
@@ -227,13 +279,66 @@ export function PropiedadDetails({ match }) {
             <h3>Sobre mi</h3>
             <p>Me gusta viajar y conocer nuevas culturas. Soy una persona amigable y me gusta conocer gente nueva.</p>
             <p>Si tienes alguna pregunta sobre la propiedad, no dudes en contactarme.</p>
-            <button className="button-contact">Contactar</button>
+            <button className="button-contact" onClick={handleOpenResena}>Deja tu reseña</button>
+            <Modal open={openResena} onClose={handleCloseResena}>
+              <Box sx={modalStyle}>
+                <h2>Deja tu reseña</h2>
+                <p>Califica tu experiencia con el arrendador, recuerda ser respetuoso sobre cualquier cosa, o tu comentario sera eliminado</p>
+                <TextField
+                  label="Comentario"
+                  multiline
+                  rows={4}
+                  value={comentario}
+                  onChange={(e) => setComentario(e.target.value)}
+                  fullWidth
+                  margin="normal"
+                  maxLength={maxLength}
+                />
+                <Rating
+                  name="simple-controlled"
+                  value={calificacion}
+                  precision={0.5}
+                  onChange={(event, newValue) => {
+                    setCalificacion(newValue);
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  onClick={handleConfirmResena}
+                >
+                  Confirmar Reseña
+                </Button>
+              </Box>
+
+            </Modal>
+            {isConfirmedResena && (
+            <div className="confirmation-message">
+              <h3>¡Reseña Publicada!</h3>
+              <p>Tu comentario fue publicado correctamente a esta propiedad.</p>
+              <p>Información de contacto del arrendador que opinaste:</p>
+              <p>Nombre: {arrendadores ?              
+              arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).first_name
+            : "Cargando..."}</p>
+              <p>Teléfono: {arrendadores ?              
+              arrendadores.find((arrendador) => arrendador.id === propiedad.arrendador).telefono
+            : "Cargando..."}</p>
+            </div>
+          )}
           </div>
-          <div>
-            <h2>Mapa Dinamico</h2>
-          </div>
+          
 
         </div>
+        <div>
+            <h2>En donde viviras</h2>
+            {/* En caso de que no funcione solo dejar  <MapComponent position={coordinates} /> */}
+            {coordinates ? (
+                <MapComponent position={coordinates} />
+              ) : (
+                <p>Obteniendo ubicación...</p>
+              )}
+          </div>
 
       </div>
     </div>
