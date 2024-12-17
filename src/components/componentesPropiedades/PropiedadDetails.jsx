@@ -21,7 +21,7 @@ import { Light, Water, WaterfallChartTwoTone } from "@mui/icons-material";
 
 //una linea
 import { getCoordinates } from '../getCordenadas.jsx';
-=======
+
 import Swal from "sweetalert2";
 
 
@@ -78,8 +78,7 @@ export function PropiedadDetails({ match }) {
   }, [propiedad]);
 
   // Funciones para abrir y cerrar el modal de las reservas
-  const handleOpen = () => setOpen(true);
-=======
+
   const handleOpen = () => {
     if (localStorage.getItem('tipoUsuario') == 'arrendador') {
       Swal.fire({
